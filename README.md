@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 株式会社Human Beings 公式ホームページ
 
-## Getting Started
+> 人類を労働から解放し、好きなことにフルコミットできる社会を実現する
 
-First, run the development server:
+## 🚀 ビジョン
+
+**人類を労働から解放する 〜好きなことにフルコミットできる社会へ〜**
+
+私たちは、人間が本来持つ創造性、感情、直感といった人間らしさを最大限に発揮できる社会の実現を目指しています。
+
+## 🎯 ミッション
+
+**社長1名 × AI従業員100体で月商1億円**
+
+AIと人間が協働することで、単純作業や繰り返し業務から解放され、すべての人が自分の情熱を追求し、好きなことに集中できる未来を創造します。
+
+## 💎 バリュー
+
+- **ヒューマンファースト**: すべての自動化は「人がより人間らしく生きる」ための手段にすぎない
+- **オールオートメーション**: 人にしかできない判断以外は全てAIに委ねる  
+- **オープンソースノウハウ**: 知識を独占せず社会に還元する
+
+## 🛠 技術スタック
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui
+- **Animation**: Framer Motion
+- **Language**: TypeScript
+- **Icons**: Lucide React
+
+## 🚀 開発環境のセットアップ
+
+### 必要な環境
+- Node.js 18.17以上
+- npm または yarn
+
+### インストール
 
 ```bash
+# リポジトリをクローン
+git clone https://github.com/[your-username]/human-beings-website.git
+cd human-beings-website
+
+# 依存関係をインストール
+npm install
+
+# 開発サーバーを起動
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いて確認してください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 利用可能なコマンド
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 開発サーバー起動
+npm run dev
 
-## Learn More
+# プロダクションビルド
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+# プロダクションサーバー起動  
+npm start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# リンターチェック
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 プロジェクト構成
 
-## Deploy on Vercel
+```
+human-beings-website/
+├── src/
+│   ├── app/
+│   │   ├── globals.css          # グローバルスタイル
+│   │   ├── layout.tsx           # ルートレイアウト
+│   │   └── page.tsx             # メインページ
+│   └── components/
+│       ├── counter.tsx          # カウンターコンポーネント
+│       ├── navigation.tsx       # ナビゲーション
+│       └── ui/                  # shadcn/uiコンポーネント
+├── public/                      # 静的ファイル
+└── components.json              # shadcn/ui設定
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 デザインシステム
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **カラーパレット**: ブルー・インディゴ・パープルのグラデーション
+- **タイポグラフィ**: Inter フォント
+- **アニメーション**: Framer Motionによる滑らかなインタラクション
+- **レスポンシブ**: モバイルファーストデザイン
+
+## 🚀 デプロイ
+
+このプロジェクトは[Vercel](https://vercel.com)でのデプロイに最適化されています。
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/[your-username]/human-beings-website)
+
+## 📄 ライセンス
+
+このプロジェクトは[MIT License](LICENSE)の下で公開されています。
+
+## 🤝 コントリビューション
+
+プルリクエストやイシューの報告を歓迎します。大きな変更を行う前に、まずイシューを開いて変更内容について議論してください。
+
+---
+
+**© 2024 株式会社Human Beings. All rights reserved.**

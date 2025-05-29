@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { Counter } from "@/components/counter";
+import { ContactForm } from "@/components/contact-form";
 import { ArrowRight, Bot, Users, TrendingUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 
@@ -279,6 +280,30 @@ export default function HomePage() {
               </p>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-24 lg:py-32">
+        <div className="container mx-auto px-6 lg:px-12">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent mb-8">
+              お気軽にお問い合わせください
+            </h2>
+            <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto">
+              Human Beingsに興味をお持ちいただき、ありがとうございます。
+              <br />
+              ご質問やご相談がございましたら、お気軽にお声かけください。
+            </p>
+          </motion.div>
+          
+          <ContactForm />
         </div>
       </section>
 

@@ -2,10 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/navigation";
-import { Counter } from "@/components/counter";
 import { ContactForm } from "@/components/contact-form";
 import { ArrowRight, Bot, Users, TrendingUp, Sparkles, Zap, Target, Heart } from "lucide-react";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -88,10 +87,12 @@ export default function HomePage() {
             >
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-                <img 
+                <Image 
                   src="/images/human-robot-handshake.jpg" 
                   alt="人間とロボットの握手 - Human Beingsの協働ビジョン"
                   className="relative w-full max-w-lg h-auto rounded-3xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 border border-white/20"
+                  width={500}
+                  height={333}
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 rounded-3xl"></div>
               </div>

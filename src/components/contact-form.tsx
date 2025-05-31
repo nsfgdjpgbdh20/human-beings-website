@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Send, Mail, User, MessageSquare } from "lucide-react";
 
 export function ContactForm() {
@@ -58,22 +57,23 @@ export function ContactForm() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="max-w-2xl mx-auto"
+      className="max-w-3xl mx-auto"
     >
-      <Card className="shadow-xl border-2 border-gray-100 hover:border-blue-200 transition-all duration-300">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent mb-4">
-            お問い合わせ
-          </CardTitle>
-          <p className="text-lg text-gray-600">
-            ご質問やご相談がございましたら、お気軽にお送りください
-          </p>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                <User className="w-4 h-4" />
+      <div className="relative group">
+        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+        <div className="relative bg-white/80 backdrop-blur-xl border border-white/50 rounded-3xl p-12 lg:p-16 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <form onSubmit={handleSubmit} className="space-y-10">
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <label htmlFor="name" className="text-xl font-black text-slate-800 flex items-center gap-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-300/50">
+                  <User className="w-5 h-5 text-white" />
+                </div>
                 お名前
               </label>
               <Input
@@ -84,13 +84,21 @@ export function ContactForm() {
                 onChange={handleChange}
                 placeholder="山田太郎"
                 required
-                className="h-12"
+                className="h-16 text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 bg-white/90 backdrop-blur-sm font-medium placeholder:text-slate-400"
               />
-            </div>
+            </motion.div>
 
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                <Mail className="w-4 h-4" />
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <label htmlFor="email" className="text-xl font-black text-slate-800 flex items-center gap-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-300/50">
+                  <Mail className="w-5 h-5 text-white" />
+                </div>
                 メールアドレス
               </label>
               <Input
@@ -101,13 +109,21 @@ export function ContactForm() {
                 onChange={handleChange}
                 placeholder="example@email.com"
                 required
-                className="h-12"
+                className="h-16 text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 bg-white/90 backdrop-blur-sm font-medium placeholder:text-slate-400"
               />
-            </div>
+            </motion.div>
 
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                <MessageSquare className="w-4 h-4" />
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <label htmlFor="message" className="text-xl font-black text-slate-800 flex items-center gap-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-300/50">
+                  <MessageSquare className="w-5 h-5 text-white" />
+                </div>
                 メッセージ
               </label>
               <Textarea
@@ -118,16 +134,20 @@ export function ContactForm() {
                 placeholder="お問い合わせ内容をお書きください..."
                 required
                 rows={6}
+                className="text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 bg-white/90 backdrop-blur-sm resize-none font-medium placeholder:text-slate-400"
               />
-            </div>
+            </motion.div>
 
             {submitStatus === "success" && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-center"
+                className="relative group"
               >
-                メッセージが正常に送信されました。ありがとうございます！
+                <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl blur-lg opacity-20"></div>
+                <div className="relative p-8 bg-white/90 backdrop-blur-xl border border-green-200/50 rounded-2xl text-green-700 text-center text-xl font-black shadow-xl">
+                  ✨ メッセージが正常に送信されました。ありがとうございます！
+                </div>
               </motion.div>
             )}
 
@@ -135,32 +155,42 @@ export function ContactForm() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-center"
+                className="relative group"
               >
-                送信中にエラーが発生しました。もう一度お試しください。
+                <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl blur-lg opacity-20"></div>
+                <div className="relative p-8 bg-white/90 backdrop-blur-xl border border-red-200/50 rounded-2xl text-red-700 text-center text-xl font-black shadow-xl">
+                  ❌ 送信中にエラーが発生しました。もう一度お試しください。
+                </div>
               </motion.div>
             )}
 
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full h-12 text-lg font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              {isSubmitting ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  送信中...
-                </div>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <Send className="w-5 h-5" />
-                  送信する
-                </div>
-              )}
-            </Button>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-18 text-xl font-black bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl rounded-2xl border-0 shadow-xl"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center gap-4">
+                    <div className="w-7 h-7 border-3 border-white border-t-transparent rounded-full animate-spin" />
+                    送信中...
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-4">
+                    <Send className="w-7 h-7" />
+                    送信する
+                  </div>
+                )}
+              </Button>
+            </motion.div>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </motion.div>
   );
 }

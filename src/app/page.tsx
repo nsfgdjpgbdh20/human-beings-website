@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { ContactForm } from "@/components/contact-form";
-import { ArrowRight, Bot, Users, TrendingUp, Sparkles, Zap, Target, Heart } from "lucide-react";
+import { ArrowRight, Bot, Users, TrendingUp, Sparkles, Zap, Target, Heart, Code, Lightbulb, Rocket } from "lucide-react";
 import Image from "next/image";
 
 export default function HomePage() {
@@ -220,6 +220,110 @@ export default function HomePage() {
                 <p className="text-lg leading-relaxed text-slate-600 font-medium">
                   マーケットに投入しフィードバックを得ながら、社会に役立つプロダクトで黒字化を目指します。
                 </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Business Content Section */}
+      <section id="business" className="relative py-32 lg:py-40 bg-gradient-to-br from-white via-indigo-50/50 to-purple-50/30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(99,102,241,0.1),transparent_50%)]"></div>
+        
+        <div className="container mx-auto px-6 lg:px-12 relative z-10">
+          <motion.div
+            className="text-center mb-24"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full mb-8 border border-indigo-200/50">
+              <Rocket className="w-5 h-5 text-indigo-600 mr-2" />
+              <span className="text-indigo-700 font-semibold text-sm">Our Business</span>
+            </div>
+            
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-slate-900 via-indigo-800 to-purple-900 bg-clip-text text-transparent mb-8">事業内容</h2>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-700 leading-tight max-w-4xl mx-auto">
+              AIで人類の課題を解決する
+              <span className="block text-xl sm:text-2xl lg:text-3xl text-slate-500 mt-4 font-medium">
+                革新的なアプリケーション開発事業
+              </span>
+            </h3>
+          </motion.div>
+
+          <motion.div
+            className="max-w-5xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {/* Current Business */}
+            <motion.div 
+              className="group relative mb-16"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white/80 backdrop-blur-xl border border-white/50 rounded-3xl p-8 lg:p-12 shadow-xl hover:shadow-2xl transition-all duration-500">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
+                  <div className="w-20 h-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 shadow-lg shadow-indigo-300/50 group-hover:scale-110 transition-transform duration-300">
+                    <Code className="w-10 h-10 text-white" />
+                  </div>
+                  <div className="text-center lg:text-left flex-1">
+                    <h4 className="text-2xl lg:text-3xl font-black mb-4 text-slate-800">AI駆動アプリケーション開発</h4>
+                    <p className="text-lg leading-relaxed text-slate-600 font-medium mb-6">
+                      人類が直面する様々な課題を、最先端のAI技術を活用したアプリケーションで解決します。
+                      従来の手法では困難だった問題に対して、AIの力で革新的なソリューションを提供。
+                    </p>
+                    <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                      <div className="flex items-center justify-center lg:justify-start">
+                        <Lightbulb className="w-4 h-4 text-indigo-600 mr-2" />
+                        <span className="text-slate-600 font-medium">問題解決志向</span>
+                      </div>
+                      <div className="flex items-center justify-center lg:justify-start">
+                        <Bot className="w-4 h-4 text-indigo-600 mr-2" />
+                        <span className="text-slate-600 font-medium">AI技術活用</span>
+                      </div>
+                      <div className="flex items-center justify-center lg:justify-start">
+                        <Rocket className="w-4 h-4 text-indigo-600 mr-2" />
+                        <span className="text-slate-600 font-medium">革新的アプローチ</span>
+                      </div>
+                      <div className="flex items-center justify-center lg:justify-start">
+                        <TrendingUp className="w-4 h-4 text-indigo-600 mr-2" />
+                        <span className="text-slate-600 font-medium">スケーラブル設計</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Future Business Expansion */}
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-slate-400 via-blue-400 to-indigo-400 rounded-3xl blur-lg opacity-10 group-hover:opacity-20 transition-opacity duration-500"></div>
+                <div className="relative bg-gradient-to-r from-slate-50 to-blue-50 border border-slate-200/50 rounded-3xl p-8 lg:p-12">
+                  <h4 className="text-xl lg:text-2xl font-bold mb-4 text-slate-700">今後の事業展開予定</h4>
+                  <p className="text-lg text-slate-600 leading-relaxed">
+                    現在のAI駆動アプリケーション開発を基盤として、<br className="hidden sm:block" />
+                    さらなる革新的な事業領域への展開を計画中です。
+                  </p>
+                  <div className="flex justify-center mt-6">
+                    <div className="flex space-x-2">
+                      <div className="w-3 h-3 bg-indigo-400 rounded-full animate-pulse"></div>
+                      <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-150"></div>
+                      <div className="w-3 h-3 bg-pink-400 rounded-full animate-pulse delay-300"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </motion.div>

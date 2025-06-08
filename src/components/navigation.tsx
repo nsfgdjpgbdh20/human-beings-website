@@ -21,9 +21,9 @@ export function Navigation() {
   const navItems = [
     { name: "ビジョン", href: "#vision" },
     { name: "ミッション", href: "#mission" },
+    { name: "事業内容", href: "#business" },
     { name: "バリュー", href: "#values" },
     { name: "vibe経営", href: "#vibe-management" },
-    { name: "note記事", href: "#note-articles" },
   ];
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

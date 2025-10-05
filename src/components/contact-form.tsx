@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Mail, User, MessageSquare } from "lucide-react";
+import { Send } from "lucide-react";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
@@ -32,7 +32,7 @@ export function ContactForm() {
 
       if (response.ok) {
         setSubmitStatus("success");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         setSubmitStatus("error");
       }
@@ -45,152 +45,113 @@ export function ContactForm() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="max-w-3xl mx-auto"
-    >
-      <div className="relative group">
-        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-        <div className="relative bg-white/80 backdrop-blur-xl border border-white/50 rounded-3xl p-12 lg:p-16 shadow-2xl hover:shadow-3xl transition-all duration-500">
-          <form onSubmit={handleSubmit} className="space-y-10">
-            <motion.div 
-              className="space-y-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <label htmlFor="name" className="text-xl font-black text-slate-800 flex items-center gap-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-300/50">
-                  <User className="w-5 h-5 text-white" />
-                </div>
-                お名前
-              </label>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="山田太郎"
-                required
-                className="h-16 text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 bg-white/90 backdrop-blur-sm font-medium placeholder:text-slate-400"
-              />
-            </motion.div>
+    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-3xl space-y-10 text-left">
+      <div className="space-y-8">
+        <div className="space-y-3">
+          <label htmlFor="name" className="form-label">
+            <span className="form-label-en">NAME</span>
+            <span className="form-label-jp">お名前</span>
+          </label>
+          <Input
+            id="name"
+            name="name"
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="山田太郎"
+            required
+            className="form-input"
+          />
+        </div>
 
-            <motion.div 
-              className="space-y-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <label htmlFor="email" className="text-xl font-black text-slate-800 flex items-center gap-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-300/50">
-                  <Mail className="w-5 h-5 text-white" />
-                </div>
-                メールアドレス
-              </label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="example@email.com"
-                required
-                className="h-16 text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 bg-white/90 backdrop-blur-sm font-medium placeholder:text-slate-400"
-              />
-            </motion.div>
+        <div className="space-y-3">
+          <label htmlFor="email" className="form-label">
+            <span className="form-label-en">EMAIL</span>
+            <span className="form-label-jp">メールアドレス</span>
+          </label>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="example@email.com"
+            required
+            className="form-input"
+          />
+        </div>
 
-            <motion.div 
-              className="space-y-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <label htmlFor="message" className="text-xl font-black text-slate-800 flex items-center gap-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-300/50">
-                  <MessageSquare className="w-5 h-5 text-white" />
-                </div>
-                メッセージ
-              </label>
-              <Textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="お問い合わせ内容をお書きください..."
-                required
-                rows={6}
-                className="text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 bg-white/90 backdrop-blur-sm resize-none font-medium placeholder:text-slate-400"
-              />
-            </motion.div>
+        <div className="space-y-3">
+          <label htmlFor="subject" className="form-label">
+            <span className="form-label-en">SUBJECT</span>
+            <span className="form-label-jp">件名</span>
+          </label>
+          <Input
+            id="subject"
+            name="subject"
+            type="text"
+            value={formData.subject}
+            onChange={handleChange}
+            placeholder="お問い合わせの件名"
+            required
+            className="form-input"
+          />
+        </div>
 
-            {submitStatus === "success" && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl blur-lg opacity-20"></div>
-                <div className="relative p-8 bg-white/90 backdrop-blur-xl border border-green-200/50 rounded-2xl text-green-700 text-center text-xl font-black shadow-xl">
-                  ✨ メッセージが正常に送信されました。ありがとうございます！
-                </div>
-              </motion.div>
-            )}
-
-            {submitStatus === "error" && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl blur-lg opacity-20"></div>
-                <div className="relative p-8 bg-white/90 backdrop-blur-xl border border-red-200/50 rounded-2xl text-red-700 text-center text-xl font-black shadow-xl">
-                  ❌ 送信中にエラーが発生しました。もう一度お試しください。
-                </div>
-              </motion.div>
-            )}
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-18 text-xl font-black bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl rounded-2xl border-0 shadow-xl"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center gap-4">
-                    <div className="w-7 h-7 border-3 border-white border-t-transparent rounded-full animate-spin" />
-                    送信中...
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-4">
-                    <Send className="w-7 h-7" />
-                    送信する
-                  </div>
-                )}
-              </Button>
-            </motion.div>
-          </form>
+        <div className="space-y-3">
+          <label htmlFor="message" className="form-label">
+            <span className="form-label-en">MESSAGE</span>
+            <span className="form-label-jp">メッセージ</span>
+          </label>
+          <Textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="お問い合わせ内容をお書きください"
+            required
+            rows={8}
+            className="form-textarea"
+          />
         </div>
       </div>
-    </motion.div>
+
+      {submitStatus === "success" && (
+        <div className="form-status form-status-success">
+          メッセージが送信されました。24時間以内に担当者よりご連絡いたします。
+        </div>
+      )}
+
+      {submitStatus === "error" && (
+        <div className="form-status form-status-error">
+          送信中にエラーが発生しました。お手数ですが、しばらく時間を置いてから再度お試しください。
+        </div>
+      )}
+
+      <div className="flex flex-col items-center gap-5 text-center">
+        <p className="text-xs tracking-[0.25em] text-gray-500">返信は24時間以内を目安に行っております</p>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex w-full items-center justify-center gap-4 rounded-[1.75rem] border border-gray-900 bg-gray-900 px-16 py-7 text-base font-semibold tracking-[0.28em] text-white transition-all duration-200 hover:bg-gray-800"
+        >
+          {isSubmitting ? (
+            <span>送信中...</span>
+          ) : (
+            <span className="flex items-center gap-3">
+              <Send className="h-4 w-4" />
+              送信する
+            </span>
+          )}
+        </Button>
+      </div>
+    </form>
   );
 }

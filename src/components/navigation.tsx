@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Bot } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navigation() {
@@ -19,65 +20,74 @@ export function Navigation() {
   }, []);
 
   const navItems = [
-    { name: "ビジョン", href: "#vision" },
-    { name: "ミッション", href: "#mission" },
-    { name: "事業内容", href: "#business" },
-    { name: "バリュー", href: "#values" },
-    { name: "vibe経営", href: "#vibe-management" },
+    { name: "MISSION", href: "#mission" },
+    { name: "BUSINESS", href: "#business" },
+    { name: "VALUES", href: "#values" },
   ];
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const targetElement = document.getElementById(targetId);
-    
+
+    // 先にモバイルメニューを閉じ、その後スクロールさせる
+    setIsOpen(false);
+
     if (targetElement) {
       const offsetTop = targetElement.offsetTop - 100; // ヘッダーの高さを考慮
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
       });
     }
-    setIsOpen(false);
   };
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? "bg-white/90 backdrop-blur-2xl border-b border-slate-200/50 shadow-xl shadow-slate-900/5" 
+          ? "bg-[var(--background)]/95 backdrop-blur-2xl border-b border-gray-300/50 shadow-[0_12px_40px_-32px_rgba(15,23,42,0.35)]" 
           : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 1 }}
     >
-      <nav className="container mx-auto px-4 lg:px-8 xl:px-12">
+      <nav className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 flex-shrink-0">
+          <Link href="/" className="flex items-center space-x-4 flex-shrink-0">
             <motion.div 
-              className="w-12 h-12 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-300/30"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="relative flex h-16 w-16 items-center justify-center"
+              whileHover={{ scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 320, damping: 20 }}
             >
-              <Bot className="w-7 h-7 text-white" />
+              <Image
+                src="/HBロゴ_20251003.png"
+                alt="Human Beings ロゴ"
+                width={64}
+                height={64}
+                className="h-16 w-16 object-contain"
+                priority
+              />
             </motion.div>
-            <span className="text-2xl font-black bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent whitespace-nowrap">Human Beings</span>
+            <span className="text-[13px] font-semibold tracking-[0.42em] text-gray-800 uppercase whitespace-nowrap">Human Beings Inc.</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center space-x-1.5">
             {navItems.map((item) => (
               <motion.div
                 key={item.name}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 320, damping: 24 }}
               >
                 <a
                   href={item.href}
                   onClick={(e) => handleSmoothScroll(e, item.href)}
-                  className="text-base font-bold text-slate-700 hover:text-blue-600 transition-all duration-300 px-6 py-3 rounded-2xl hover:bg-blue-50/80 backdrop-blur-sm whitespace-nowrap cursor-pointer border border-transparent hover:border-blue-200/50"
+                  className="text-[12px] tracking-[0.35em] text-gray-600 hover:text-gray-900 transition-all duration-300 px-5 py-3 rounded-full border border-transparent hover:border-gray-300/70 hover:bg-white/70 backdrop-blur-sm whitespace-nowrap cursor-pointer"
                 >
                   {item.name}
                 </a>
@@ -85,14 +95,14 @@ export function Navigation() {
             ))}
             
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
               className="ml-4"
             >
               <a 
                 href="#contact"
                 onClick={(e) => handleSmoothScroll(e, "#contact")}
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white text-base font-bold px-8 py-3 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer border border-transparent hover:border-white/20"
+                className="inline-flex items-center justify-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-3 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white whitespace-nowrap"
               >
                 お問い合わせ
               </a>
@@ -102,7 +112,7 @@ export function Navigation() {
           {/* Mobile menu button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-3 rounded-2xl hover:bg-blue-50/80 backdrop-blur-sm transition-all duration-300 border border-transparent hover:border-blue-200/50"
+            className="lg:hidden p-3 rounded-2xl border border-gray-300/70 bg-white/80 backdrop-blur-md transition-all duration-300"
             whileTap={{ scale: 0.95 }}
           >
             {isOpen ? <X className="w-6 h-6 text-slate-700" /> : <Menu className="w-6 h-6 text-slate-700" />}
@@ -113,7 +123,7 @@ export function Navigation() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="lg:hidden bg-white/95 backdrop-blur-2xl border-t border-slate-200/50 rounded-b-3xl shadow-2xl shadow-slate-900/10"
+              className="lg:hidden bg-[var(--background)]/95 backdrop-blur-2xl border-t border-gray-300/60 rounded-b-3xl shadow-[0_30px_60px_-40px_rgba(15,23,42,0.35)]"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -130,7 +140,7 @@ export function Navigation() {
                     <a
                       href={item.href}
                       onClick={(e) => handleSmoothScroll(e, item.href)}
-                      className="block text-2xl font-bold text-slate-700 hover:text-blue-600 transition-all duration-300 py-3 px-6 rounded-2xl hover:bg-blue-50/80 backdrop-blur-sm cursor-pointer border border-transparent hover:border-blue-200/50"
+                      className="block text-lg font-medium tracking-[0.2em] text-gray-700 hover:text-gray-900 transition-all duration-300 py-3 px-6 rounded-2xl border border-transparent hover:border-gray-300/60 hover:bg-white/70 backdrop-blur-sm cursor-pointer"
                     >
                       {item.name}
                     </a>
@@ -144,7 +154,7 @@ export function Navigation() {
                   <a
                     href="#contact"
                     onClick={(e) => handleSmoothScroll(e, "#contact")}
-                    className="block w-full text-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white text-xl font-bold px-12 py-5 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                    className="block w-full text-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-4 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white cursor-pointer whitespace-nowrap"
                   >
                     お問い合わせ
                   </a>

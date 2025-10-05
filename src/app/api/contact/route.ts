@@ -1,13 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-// import nodemailer from 'nodemailer'; // <- 実際に使用する場合はコメントアウトを解除
+import { Resend } from 'resend';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev';
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, subject, message } = body;
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -23,37 +32,48 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 現在はコンソールログのみ（開発用）
-    console.log('Contact form submission:', {
-      name,
-      email,
-      message,
-      timestamp: new Date().toISOString(),
-      to: 'nsfgdjpgbdh20@gmail.com'
-    });
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.warn('RESEND_API_KEY is not set. Falling back to console logging.');
+    }
 
-    // 🚀 実際のメール送信を有効にするには以下の手順が必要です：
-    // 1. npm install nodemailer @types/nodemailer
-    // 2. 環境変数の設定（.env.local）
-    // 3. 以下のコードのコメントアウトを解除
+    const sanitizedMessage = escapeHtml(message);
+    const sanitizedSubject = escapeHtml(subject);
+    const emailPayload = {
+      from: FROM_EMAIL,
+      to: [process.env.CONTACT_TO_EMAIL ?? 'nsfgdjpgbdh20@gmail.com'],
+      replyTo: email,
+      subject: `お問い合わせ: ${subject}`,
+      text: `お名前: ${name}\nメールアドレス: ${email}\n件名: ${subject}\n\nメッセージ:\n${message}`,
+      html: `
+        <h2>新しいお問い合わせが届きました</h2>
+        <p><strong>お名前:</strong> ${name}</p>
+        <p><strong>メールアドレス:</strong> ${email}</p>
+        <p><strong>件名:</strong> ${sanitizedSubject}</p>
+        <p><strong>メッセージ:</strong></p>
+        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap;">
+          ${sanitizedMessage.replace(/\n/g, '<br />')}
+        </div>
+      `
+    };
 
-    /*
-    // 実際のメール送信実装例：
-    await sendActualEmail({
-      to: 'nsfgdjpgbdh20@gmail.com',
-      from: email,
-      name,
-      message
-    });
-    */
-    
-    // For demonstration, we'll simulate email sending
-    await simulateEmailSending({
-      to: 'nsfgdjpgbdh20@gmail.com',
-      from: email,
-      name,
-      message
-    });
+    if (apiKey) {
+      const resend = new Resend(apiKey);
+      const { error } = await resend.emails.send(emailPayload);
+
+      if (error) {
+        console.error('Resend email error:', error);
+        return NextResponse.json(
+          { error: 'Failed to send email. Please try again later.' },
+          { status: 500 }
+        );
+      }
+    } else {
+      console.log('Contact form submission (メール送信シミュレーション):', {
+        ...emailPayload,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     return NextResponse.json(
       { message: 'Contact form submitted successfully' },
@@ -66,55 +86,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// 実際のメール送信関数（使用する場合）
-/*
-async function sendActualEmail(data: {
-  to: string;
-  from: string;
-  name: string;
-  message: string;
-}) {
-  const transporter = nodemailer.createTransporter({
-    service: 'gmail', // または他のメールサービス
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-
-  await transporter.sendMail({
-    from: process.env.SMTP_FROM || 'noreply@yourdomain.com',
-    to: data.to,
-    subject: `お問い合わせ - ${data.name}様より`,
-    html: `
-      <h2>新しいお問い合わせが届きました</h2>
-      <p><strong>お名前:</strong> ${data.name}</p>
-      <p><strong>メールアドレス:</strong> ${data.from}</p>
-      <p><strong>メッセージ:</strong></p>
-      <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-        ${data.message.replace(/\n/g, '<br>')}
-      </div>
-    `,
-    replyTo: data.from,
-  });
-}
-*/
-
-// Simulate email sending - replace with actual email service
-async function simulateEmailSending(data: {
-  to: string;
-  from: string;
-  name: string;
-  message: string;
-}) {
-  // 開発環境での動作確認用
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  console.log(`📧 メール送信シミュレーション:`);
-  console.log(`   宛先: ${data.to}`);
-  console.log(`   送信者: ${data.name} (${data.from})`);
-  console.log(`   件名: お問い合わせ - ${data.name}様より`);
-  console.log(`   メッセージ: ${data.message}`);
 }

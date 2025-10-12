@@ -130,8 +130,8 @@ export default function HomePage() {
                   description: '女性向け出張トレーニングサービス。企画・運用・接客をAIがサポートし、少人数で高品質を維持。'
                 }, {
                   logo: '/images/human-robot-handshake.jpg',
-                  name: 'Automation Commons',
-                  description: '生産性向上のワークフローをオープン提供し、共創で磨き込むコミュニティプラットフォーム。'
+                  name: 'App Development',
+                  description: 'AIを用いた高速アプリ開発により世の中のためになるアプリを多数作成。'
                 }].map((item, idx) => (
                   <ScrollReveal
                     key={item.name}
@@ -247,13 +247,9 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="relative border-t border-gray-300/60 bg-white/80 py-12">
         <div className="container mx-auto flex flex-col items-center gap-4 px-6 text-center">
-          <Image
-            src="/HBロゴ_20251003.png"
-            alt="Human Beings ロゴ"
-            width={36}
-            height={36}
-            className="h-9 w-9 object-contain"
-          />
+          <span className="text-sm tracking-[0.42em] uppercase text-gray-700">
+            Human Beings Inc.
+          </span>
           <p className="text-sm tracking-[0.35em] text-gray-500">
             © 2025 株式会社Human Beings
           </p>

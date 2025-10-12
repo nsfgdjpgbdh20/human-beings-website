@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navigation() {
@@ -25,22 +24,44 @@ export function Navigation() {
     { name: "VALUES", href: "#values" },
   ];
 
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("#")) {
+      return;
+    }
+
     e.preventDefault();
-    const targetId = href.replace('#', '');
+
+    const targetId = href.slice(1);
     const targetElement = document.getElementById(targetId);
 
-    // 先にモバイルメニューを閉じ、その後スクロールさせる
     setIsOpen(false);
 
-    if (targetElement) {
-      const offsetTop = targetElement.offsetTop - 100; // ヘッダーの高さを考慮
-      requestAnimationFrame(() => {
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
+    if (!targetElement) {
+      return;
+    }
+
+    const headerOffset = 96;
+    const elementPosition =
+      targetElement.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = Math.max(elementPosition - headerOffset, 0);
+
+    const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+    const delay = isMobile ? 350 : 0;
+
+    const scrollToTarget = () => {
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
       });
+    };
+
+    if (delay) {
+      window.setTimeout(scrollToTarget, delay);
+    } else {
+      requestAnimationFrame(scrollToTarget);
     }
   };
 
@@ -58,22 +79,10 @@ export function Navigation() {
       <nav className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-4 flex-shrink-0">
-            <motion.div 
-              className="relative flex h-16 w-16 items-center justify-center"
-              whileHover={{ scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 320, damping: 20 }}
-            >
-              <Image
-                src="/HBロゴ_20251003.png"
-                alt="Human Beings ロゴ"
-                width={64}
-                height={64}
-                className="h-16 w-16 object-contain"
-                priority
-              />
-            </motion.div>
-            <span className="text-[13px] font-semibold tracking-[0.42em] text-gray-800 uppercase whitespace-nowrap">Human Beings Inc.</span>
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <span className="text-[13px] font-semibold tracking-[0.42em] text-gray-800 uppercase whitespace-nowrap">
+              Human Beings Inc.
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

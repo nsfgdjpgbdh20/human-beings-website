@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
 import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -43,7 +44,7 @@ export default function HomePage() {
                 </div>
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">ミッション</h2>
                 <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-                関わる人間の労働時間を「週4日勤務」に削減する。
+                完全自動運転の株式会社を完成させる
                 </p>
               </div>
 
@@ -60,7 +61,7 @@ export default function HomePage() {
                       <h3 className="text-2xl font-semibold text-gray-900">人間の再定義</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      人間はレビューと意思決定のみを担う。人は目的と問いを提示し続ける存在になります。
+                      人間は課題を発見し、最後までやり切る責任を持つ仕事を担う。
                     </p>
                   </div>
                 </ScrollReveal>
@@ -72,25 +73,25 @@ export default function HomePage() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
                         <Bot className="h-6 w-6 text-gray-800" />
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">AI部下100人</h3>
+                      <h3 className="text-2xl font-semibold text-gray-900">自己進化</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      目的達成のため、自律的にタスクを生成し24時間稼働する。学習と改善のサイクルを回し続けます。
+                      学習と改善のサイクルを自律的に回し続け、目標達成を継続する。
                     </p>
                   </div>
                 </ScrollReveal>
 
                 <ScrollReveal delay={0.3} className="brand-pane p-10 text-left">
-                  <span className="text-xs uppercase tracking-[0.4em] text-gray-500">Revenue Goal</span>
+                  <span className="text-xs uppercase tracking-[0.4em] text-gray-500">Profitable</span>
                   <div className="mt-6 flex flex-col gap-4">
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
                         <TrendingUp className="h-6 w-6 text-gray-800" />
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">粗利+20%</h3>
+                      <h3 className="text-2xl font-semibold text-gray-900">黒字経営</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      今までの80%のリソースで売り上げを完全に維持。粗利額を2割増やすことができます。
+                      社会にとって必要な事業を倫理観をもって提供し、経済効果を生み出す。
                     </p>
                   </div>
                 </ScrollReveal>
@@ -113,7 +114,9 @@ export default function HomePage() {
                 </div>
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">事業内容</h2>
                 <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-                  自社事業・クライアントワークのいずれも、AIで「時間を取り戻す」ことにフォーカスしています。
+                  自社事業・クライアントワークのいずれも、
+                  <br />
+                  AIで「時間を取り戻す」ことにフォーカスしています。
                 </p>
               </div>
 
@@ -121,36 +124,62 @@ export default function HomePage() {
 
               <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
                 {[{
-                  logo: '/images/human-robot-handshake.jpg',
-                  name: 'AI Consultancy',
-                  description: '業務設計から実装までをAIで再構築。経営者が意思決定と創造にフルコミットできる状態を実現します。'
+                  logo: '/images/ai-workflow.png',
+                  name: 'AI Workflow Design',
+                  description: '業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。'
                 }, {
-                  logo: '/images/human-robot-handshake.jpg',
-                  name: 'Shefit-Home',
-                  description: '女性向け出張トレーニングサービス。企画・運用・接客をAIがサポートし、少人数で高品質を維持。'
+                  logo: '/images/shefit-home.jpg',
+                  name: 'Shefit-Home（旧PATTORE）',
+                  description: 'AIを用いた効率化されたビジネスも展開。女性向け出張パーソナルトレーニングのShefit-Homeは、初回のトレーナーとのマッチングをAIがサポートし、少人数で高品質を維持します。',
+                  href: 'https://www.pattore.com/',
+                  isExternal: true
                 }, {
-                  logo: '/images/human-robot-handshake.jpg',
+                  logo: '/images/ai-dev-app.png',
                   name: 'App Development',
-                  description: 'AIを用いた高速アプリ開発により世の中のためになるアプリを多数作成。'
-                }].map((item, idx) => (
-                  <ScrollReveal
-                    key={item.name}
-                    delay={idx * 0.1}
-                    className="brand-pane flex flex-col items-start gap-4 p-8 text-left"
-                  >
-                    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-white">
-                      <Image
-                        src={item.logo}
-                        alt={`${item.name} ロゴ`}
-                        width={56}
-                        height={56}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900">{item.name}</h3>
-                    <p className="text-base leading-relaxed text-gray-600">{item.description}</p>
-                  </ScrollReveal>
-                ))}
+                  description: 'AIを用いた高速アプリ開発により世の中のためになるアプリを生産。現在はAIによって作成した「G検定合格アプリ」などがあります。',
+                  href: 'https://apps.apple.com/jp/app/g%E6%A4%9C%E5%AE%9A%E5%90%88%E6%A0%BC%E3%83%89%E3%83%AA%E3%83%AB/id6745340601',
+                  isExternal: true
+                }].map((item, idx) => {
+                  const cardBody = (
+                    <>
+                      <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-white">
+                        <Image
+                          src={item.logo}
+                          alt={`${item.name} ロゴ`}
+                          width={56}
+                          height={56}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900">{item.name}</h3>
+                      <p className="text-base leading-relaxed text-gray-600">{item.description}</p>
+                    </>
+                  );
+
+                  const wrapperClass =
+                    "flex h-full flex-col items-start gap-4 text-left";
+
+                  return (
+                    <ScrollReveal
+                      key={item.name}
+                      delay={idx * 0.1}
+                      className="brand-pane flex flex-col items-start gap-4 p-8 text-left"
+                    >
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          {...(item.isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+                          className={wrapperClass}
+                          aria-label={`${item.name}の詳細リンク`}
+                        >
+                          {cardBody}
+                        </Link>
+                      ) : (
+                        <div className={wrapperClass}>{cardBody}</div>
+                      )}
+                    </ScrollReveal>
+                  );
+                })}
               </div>
             </ScrollReveal>
           </div>
@@ -169,7 +198,7 @@ export default function HomePage() {
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">バリュー</h2>
           <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-            以下の3つの価値観が、Human Beingsが貫くすべての意思決定の軸です。
+            3つの価値観が、弊社が大事にする意思決定の軸です。
           </p>
         </div>
 
@@ -247,9 +276,6 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="relative border-t border-gray-300/60 bg-white/80 py-12">
         <div className="container mx-auto flex flex-col items-center gap-4 px-6 text-center">
-          <span className="text-sm tracking-[0.42em] uppercase text-gray-700">
-            Human Beings Inc.
-          </span>
           <p className="text-sm tracking-[0.35em] text-gray-500">
             © 2025 株式会社Human Beings
           </p>

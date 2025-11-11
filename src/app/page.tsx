@@ -126,7 +126,9 @@ export default function HomePage() {
                 {[{
                   logo: '/images/ai-workflow.png',
                   name: 'AI Workflow Design',
-                  description: '業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。'
+                  description: '業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。',
+                  href: 'https://coconala.com/services/3933596',
+                  isExternal: true
                 }, {
                   logo: '/images/shefit-home.jpg',
                   name: 'Shefit-Home（旧PATTORE）',
@@ -198,7 +200,7 @@ export default function HomePage() {
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">バリュー</h2>
           <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-            3つの価値観が、弊社が大事にする意思決定の軸です。
+            以下の3つは、弊社が大事にする意思決定の軸です。
           </p>
         </div>
 
@@ -213,7 +215,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-2xl font-semibold text-gray-900">ヒューマンファースト</h3>
               <p className="text-base leading-relaxed text-gray-600">
-                すべての自動化は「人がより人間らしく生きる」ための手段に過ぎない。目的に沿わないなら自動化しない。
+                すべての自動化は「人がより人間らしく生きる」ための手段に過ぎない。目的に沿わないなら自動化しない。 
               </p>
             </div>
           </ScrollReveal>

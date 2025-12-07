@@ -281,6 +281,11 @@ export default function HomePage() {
           <p className="text-sm tracking-[0.35em] text-gray-500">
             © 2025 株式会社Human Beings
           </p>
+          <div className="flex gap-4 text-xs tracking-wider text-gray-500">
+            <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
+              プライバシーポリシー
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

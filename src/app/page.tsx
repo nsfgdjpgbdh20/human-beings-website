@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
-import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu } from "lucide-react";
+import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu, Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -281,10 +281,21 @@ export default function HomePage() {
           <p className="text-sm tracking-[0.35em] text-gray-500">
             © 2025 株式会社Human Beings
           </p>
-          <div className="flex gap-4 text-xs tracking-wider text-gray-500">
-            <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
-              プライバシーポリシー
-            </Link>
+          <div className="flex items-center gap-6">
+            <div className="flex gap-4 text-xs tracking-wider text-gray-500">
+              <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
+                プライバシーポリシー
+              </Link>
+            </div>
+            <a
+              href="https://www.instagram.com/humanbeings_ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-gray-900 transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </footer>

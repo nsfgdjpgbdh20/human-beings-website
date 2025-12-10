@@ -127,7 +127,7 @@ export default function HomePage() {
                   logo: '/images/ai-workflow.png',
                   name: 'AI Workflow Design',
                   description: '業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。',
-                  href: 'https://coconala.com/services/3933596',
+                  href: 'https://n8n.io/creators/nakayama/',
                   isExternal: true
                 }, {
                   logo: '/images/shefit-home.jpg',

@@ -4,10 +4,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Locale } from "@/i18n-config";
+import { usePathname, useRouter } from "next/navigation";
 
-export function Navigation() {
+type Dictionary = typeof import("@/dictionaries/jp.json");
+
+export function Navigation({ dictionary, lang }: { dictionary: Dictionary['navigation'], lang: Locale }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,9 +25,9 @@ export function Navigation() {
   }, []);
 
   const navItems = [
-    { name: "MISSION", href: "#mission" },
-    { name: "BUSINESS", href: "#business" },
-    { name: "VALUES", href: "#values" },
+    { name: dictionary.mission, href: "#mission" },
+    { name: dictionary.business, href: "#business" },
+    { name: dictionary.values, href: "#values" },
   ];
 
   const handleSmoothScroll = (
@@ -65,6 +71,15 @@ export function Navigation() {
     }
   };
 
+  const toggleLanguage = () => {
+    const newLang = lang === "jp" ? "en" : "jp";
+    // Split the path into segments and replace the language segment
+    const segments = pathname.split("/");
+    segments[1] = newLang;
+    const newPath = segments.join("/");
+    router.push(newPath);
+  };
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -72,14 +87,11 @@ export function Navigation() {
           ? "bg-[var(--background)]/95 backdrop-blur-2xl border-b border-gray-300/50 shadow-[0_12px_40px_-32px_rgba(15,23,42,0.35)]" 
           : "bg-transparent"
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 1 }}
     >
       <nav className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0">
+          <Link href={`/${lang}`} className="flex items-center flex-shrink-0">
             <span className="text-[13px] font-semibold tracking-[0.42em] text-gray-800 uppercase whitespace-nowrap">
               Human Beings Inc.
             </span>
@@ -113,19 +125,52 @@ export function Navigation() {
                 onClick={(e) => handleSmoothScroll(e, "#contact")}
                 className="inline-flex items-center justify-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-3 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white whitespace-nowrap"
               >
-                お問い合わせ
+                {dictionary.contact}
               </a>
+            </motion.div>
+
+            {/* Language Toggle (Desktop) */}
+            <motion.div className="ml-6 flex items-center">
+              <button
+                onClick={toggleLanguage}
+                className="relative inline-flex h-8 w-16 items-center rounded-full bg-gray-200 transition-colors focus:outline-none"
+              >
+                <span className="sr-only">Toggle Language</span>
+                <span
+                  className={`${
+                    lang === "en" ? "translate-x-9" : "translate-x-1"
+                  } inline-block h-6 w-6 transform rounded-full bg-white shadow-sm transition-transform duration-200 flex items-center justify-center text-[10px] font-bold text-gray-800 leading-none pt-[2px]`}
+                >
+                  {lang === "jp" ? "JP" : "EN"}
+                </span>
+              </button>
             </motion.div>
           </div>
 
           {/* Mobile menu button */}
-          <motion.button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-3 rounded-2xl border border-gray-300/70 bg-white/80 backdrop-blur-md transition-all duration-300"
-            whileTap={{ scale: 0.95 }}
-          >
-            {isOpen ? <X className="w-6 h-6 text-slate-700" /> : <Menu className="w-6 h-6 text-slate-700" />}
-          </motion.button>
+          <div className="lg:hidden flex items-center gap-4">
+            {/* Language Toggle (Mobile) */}
+             <button
+                onClick={toggleLanguage}
+                className="relative inline-flex h-7 w-12 items-center rounded-full bg-gray-200 transition-colors focus:outline-none"
+              >
+                <span
+                  className={`${
+                    lang === "en" ? "translate-x-6" : "translate-x-1"
+                  } inline-block h-5 w-5 transform rounded-full bg-white shadow-sm transition-transform duration-200 flex items-center justify-center text-[9px] font-bold text-gray-800 leading-none pt-[1px]`}
+                >
+                  {lang === "jp" ? "JP" : "EN"}
+                </span>
+              </button>
+
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-3 rounded-2xl border border-gray-300/70 bg-white/80 backdrop-blur-md transition-all duration-300"
+              whileTap={{ scale: 0.95 }}
+            >
+              {isOpen ? <X className="w-6 h-6 text-slate-700" /> : <Menu className="w-6 h-6 text-slate-700" />}
+            </motion.button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -165,7 +210,7 @@ export function Navigation() {
                     onClick={(e) => handleSmoothScroll(e, "#contact")}
                     className="block w-full text-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-4 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white cursor-pointer whitespace-nowrap"
                   >
-                    お問い合わせ
+                    {dictionary.contact}
                   </a>
                 </motion.div>
               </div>
@@ -175,4 +220,4 @@ export function Navigation() {
       </nav>
     </motion.header>
   );
-} 
+}

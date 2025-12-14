@@ -1,0 +1,95 @@
+{
+  "hero": {
+    "title": "Reclaiming the\nHuman \"White Space\".",
+    "subtitle": "Restore humanity’s white space."
+  },
+  "mission": {
+    "eyebrow": "Mission",
+    "title": "Mission",
+    "description": "Complete the Fully Autonomous Corporation.",
+    "cards": {
+      "humanDirector": {
+        "title": "Redefining Humanity",
+        "description": "Humans are responsible for discovering problems and seeing them through to the end."
+      },
+      "aiWorkforce": {
+        "title": "Self-Evolution",
+        "description": "Autonomously cycling through learning and improvement to continuously achieve goals."
+      },
+      "profitable": {
+        "title": "Profitable Management",
+        "description": "Providing socially necessary businesses with ethics to generate economic impact."
+      }
+    }
+  },
+  "business": {
+    "eyebrow": "Business",
+    "title": "Business",
+    "description": "Whether in-house or client work,\nwe focus on \"reclaiming time\" with AI.",
+    "items": {
+      "aiWorkflow": {
+        "name": "AI Workflow Design",
+        "description": "We handle everything from AI workflow design for business automation to implementation, knowledge base construction, and operation. Using tools like n8n, we realize safe and reproducible automation."
+      },
+      "shefitHome": {
+        "name": "Shefit-Home (formerly PATTORE)",
+        "description": "Developing efficient businesses using AI. Shefit-Home, a personal training service for women, uses AI to support initial trainer matching, maintaining high quality with a small team."
+      },
+      "appDevelopment": {
+        "name": "App Development",
+        "description": "High-speed app development using AI to produce apps that benefit the world. Currently, we have apps like 'G-Test Pass Drill' created by AI."
+      }
+    }
+  },
+  "values": {
+    "eyebrow": "Value",
+    "title": "Value",
+    "description": "The following three are the axes of our decision-making.",
+    "cards": {
+      "humanFirst": {
+        "title": "Human First",
+        "description": "All automation is merely a means for 'people to live more like humans'. If it doesn't fit the purpose, we don't automate."
+      },
+      "fullAutomation": {
+        "title": "Full Automation",
+        "description": "Leave everything except judgment only humans can do to AI. Create an environment where people can focus on questions and creation."
+      },
+      "openPlaybook": {
+        "title": "Open Source Know-How",
+        "description": "Share gained know-how with society and increase partners for co-creation. Create a chain reaction and promote the update of humanity as a whole."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Contact",
+    "description": "We will review your inquiry and get back to you.",
+    "form": {
+        "name": "NAME",
+        "email": "EMAIL",
+        "subject": "SUBJECT",
+        "message": "MESSAGE",
+        "placeholder": {
+            "name": "John Doe",
+            "email": "example@email.com",
+            "subject": "Inquiry Subject",
+            "message": "Please write your inquiry here"
+        },
+        "submit": "Send",
+        "submitting": "Sending...",
+        "success": "Your message has been sent. We will contact you within 24 hours.",
+        "error": "An error occurred. Please try again later.",
+        "note": "We aim to reply within 24 hours"
+    }
+  },
+  "navigation": {
+    "mission": "MISSION",
+    "business": "BUSINESS",
+    "values": "VALUES",
+    "contact": "Contact Us"
+  },
+  "footer": {
+    "copyright": "© 2025 Human Beings Inc.",
+    "privacyPolicy": "Privacy Policy"
+  }
+}

@@ -7,11 +7,14 @@ import { WorkflowCircuit } from "@/components/workflow-circuit";
 import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu, Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Locale } from "@/i18n-config";
 
-export default function HomePage() {
+type Dictionary = typeof import("@/dictionaries/jp.json");
+
+export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: Locale }) {
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <Navigation />
+      <Navigation dictionary={dictionary.navigation} lang={lang} />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white pb-20 pt-32">
@@ -23,10 +26,9 @@ export default function HomePage() {
           <div className="container mx-auto max-w-6xl px-6 lg:px-12">
             <div className="space-y-6 max-w-3xl text-left">
               <h1 className="text-[clamp(3rem,7vw,6rem)] leading-tight text-gray-900">
-                <span className="block whitespace-nowrap">人間の「余白」を、</span>
-                <span className="block whitespace-nowrap">取り戻す。</span>
+                <span className="block whitespace-pre-wrap">{dictionary.hero.title}</span>
               </h1>
-              <p className="text-lg text-gray-500">Restore humanity’s white space.</p>
+              <p className="text-lg text-gray-500">{dictionary.hero.subtitle}</p>
             </div>
           </div>
         </div>
@@ -40,11 +42,11 @@ export default function HomePage() {
             <ScrollReveal className="flex flex-col gap-16">
               <div className="flex flex-col items-center gap-6 text-center">
                 <div className="eyebrow">
-                                    <span>Mission</span>
+                  <span>{dictionary.mission.eyebrow}</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">ミッション</h2>
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">{dictionary.mission.title}</h2>
                 <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-                完全自動運転の株式会社を完成させる
+                  {dictionary.mission.description}
                 </p>
               </div>
 
@@ -58,10 +60,10 @@ export default function HomePage() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
                         <Users className="h-6 w-6 text-gray-800" />
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">人間の再定義</h3>
+                      <h3 className="text-2xl font-semibold text-gray-900">{dictionary.mission.cards.humanDirector.title}</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      人間は課題を発見し、最後までやり切る責任を持つ仕事を担う。
+                      {dictionary.mission.cards.humanDirector.description}
                     </p>
                   </div>
                 </ScrollReveal>
@@ -73,10 +75,10 @@ export default function HomePage() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
                         <Bot className="h-6 w-6 text-gray-800" />
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">自己進化</h3>
+                      <h3 className="text-2xl font-semibold text-gray-900">{dictionary.mission.cards.aiWorkforce.title}</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      学習と改善のサイクルを自律的に回し続け、目標達成を継続する。
+                      {dictionary.mission.cards.aiWorkforce.description}
                     </p>
                   </div>
                 </ScrollReveal>
@@ -88,10 +90,10 @@ export default function HomePage() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
                         <TrendingUp className="h-6 w-6 text-gray-800" />
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">黒字経営</h3>
+                      <h3 className="text-2xl font-semibold text-gray-900">{dictionary.mission.cards.profitable.title}</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      社会にとって必要な事業を倫理観をもって提供し、経済効果を生み出す。
+                      {dictionary.mission.cards.profitable.description}
                     </p>
                   </div>
                 </ScrollReveal>
@@ -110,13 +112,11 @@ export default function HomePage() {
             <ScrollReveal className="flex flex-col gap-16">
               <div className="flex flex-col items-center gap-6 text-center">
                 <div className="eyebrow">
-                  <span>Business</span>
+                  <span>{dictionary.business.eyebrow}</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">事業内容</h2>
-                <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-                  自社事業・クライアントワークのいずれも、
-                  <br />
-                  AIで「時間を取り戻す」ことにフォーカスしています。
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">{dictionary.business.title}</h2>
+                <p className="max-w-3xl text-xl leading-relaxed text-gray-600 whitespace-pre-wrap">
+                  {dictionary.business.description}
                 </p>
               </div>
 
@@ -125,20 +125,20 @@ export default function HomePage() {
               <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
                 {[{
                   logo: '/images/ai-workflow.png',
-                  name: 'AI Workflow Design',
-                  description: '業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。',
+                  name: dictionary.business.items.aiWorkflow.name,
+                  description: dictionary.business.items.aiWorkflow.description,
                   href: 'https://n8n.io/creators/nakayama/',
                   isExternal: true
                 }, {
                   logo: '/images/shefit-home.jpg',
-                  name: 'Shefit-Home（旧PATTORE）',
-                  description: 'AIを用いた効率化されたビジネスも展開。女性向け出張パーソナルトレーニングのShefit-Homeは、初回のトレーナーとのマッチングをAIがサポートし、少人数で高品質を維持します。',
+                  name: dictionary.business.items.shefitHome.name,
+                  description: dictionary.business.items.shefitHome.description,
                   href: 'https://www.pattore.com/',
                   isExternal: true
                 }, {
                   logo: '/images/ai-dev-app.png',
-                  name: 'App Development',
-                  description: 'AIを用いた高速アプリ開発により世の中のためになるアプリを生産。現在はAIによって作成した「G検定合格アプリ」などがあります。',
+                  name: dictionary.business.items.appDevelopment.name,
+                  description: dictionary.business.items.appDevelopment.description,
                   href: 'https://apps.apple.com/jp/app/g%E6%A4%9C%E5%AE%9A%E5%90%88%E6%A0%BC%E3%83%89%E3%83%AA%E3%83%AB/id6745340601',
                   isExternal: true
                 }].map((item, idx) => {
@@ -147,7 +147,7 @@ export default function HomePage() {
                       <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-white">
                         <Image
                           src={item.logo}
-                          alt={`${item.name} ロゴ`}
+                          alt={`${item.name} logo`}
                           width={56}
                           height={56}
                           className="h-full w-full object-cover"
@@ -172,7 +172,7 @@ export default function HomePage() {
                           href={item.href}
                           {...(item.isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
                           className={wrapperClass}
-                          aria-label={`${item.name}の詳細リンク`}
+                          aria-label={`${item.name} details`}
                         >
                           {cardBody}
                         </Link>
@@ -196,11 +196,11 @@ export default function HomePage() {
       <ScrollReveal className="flex flex-col gap-16">
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="eyebrow">
-                        <span>Value</span>
+            <span>{dictionary.values.eyebrow}</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">バリュー</h2>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">{dictionary.values.title}</h2>
           <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-            以下の3つは、弊社が大事にする意思決定の軸です。
+            {dictionary.values.description}
           </p>
         </div>
 
@@ -213,9 +213,9 @@ export default function HomePage() {
                 <Heart className="h-4 w-4" />
                 HUMAN FIRST
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900">ヒューマンファースト</h3>
+              <h3 className="text-2xl font-semibold text-gray-900">{dictionary.values.cards.humanFirst.title}</h3>
               <p className="text-base leading-relaxed text-gray-600">
-                すべての自動化は「人がより人間らしく生きる」ための手段に過ぎない。目的に沿わないなら自動化しない。 
+                {dictionary.values.cards.humanFirst.description}
               </p>
             </div>
           </ScrollReveal>
@@ -226,9 +226,9 @@ export default function HomePage() {
                 <Cpu className="h-4 w-4" />
                 FULL AUTOMATION
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900">オールオートメーション</h3>
+              <h3 className="text-2xl font-semibold text-gray-900">{dictionary.values.cards.fullAutomation.title}</h3>
               <p className="text-base leading-relaxed text-gray-600">
-                人にしかできない判断以外はすべてAIへ。人が問いと創造に集中できる環境をつくる。
+                {dictionary.values.cards.fullAutomation.description}
               </p>
             </div>
           </ScrollReveal>
@@ -239,9 +239,9 @@ export default function HomePage() {
                 <Lightbulb className="h-4 w-4" />
                 OPEN PLAYBOOK
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900">オープンソースノウハウ</h3>
+              <h3 className="text-2xl font-semibold text-gray-900">{dictionary.values.cards.openPlaybook.title}</h3>
               <p className="text-base leading-relaxed text-gray-600">
-                得られたノウハウを社会に共有し、共創する仲間を増やす。連鎖を生み、人類全体のアップデートを促します。
+                {dictionary.values.cards.openPlaybook.description}
               </p>
             </div>
           </ScrollReveal>
@@ -261,13 +261,13 @@ export default function HomePage() {
             <ScrollReveal className="brand-pane px-10 py-12">
               <div className="flex flex-col gap-8 text-center">
                 <div className="eyebrow justify-center">
-                                    <span>Contact</span>
+                  <span>{dictionary.contact.eyebrow}</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl font-medium text-gray-900">お問い合わせ</h2>
+                <h2 className="text-4xl sm:text-5xl font-medium text-gray-900">{dictionary.contact.title}</h2>
                 <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
-                お問い合わせの内容を確認し、折り返しご連絡させていただきます。
+                  {dictionary.contact.description}
                 </p>
-                <ContactForm />
+                <ContactForm dictionary={dictionary.contact.form} />
               </div>
             </ScrollReveal>
           </div>
@@ -279,12 +279,12 @@ export default function HomePage() {
       <footer className="relative border-t border-gray-300/60 bg-white/80 py-12">
         <div className="container mx-auto flex flex-col items-center gap-4 px-6 text-center">
           <p className="text-sm tracking-[0.35em] text-gray-500">
-            © 2025 株式会社Human Beings
+            {dictionary.footer.copyright}
           </p>
           <div className="flex items-center gap-6">
             <div className="flex gap-4 text-xs tracking-wider text-gray-500">
-              <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
-                プライバシーポリシー
+              <Link href={`/${lang}/privacy-policy`} className="hover:text-gray-900 transition-colors">
+                {dictionary.footer.privacyPolicy}
               </Link>
             </div>
             <a

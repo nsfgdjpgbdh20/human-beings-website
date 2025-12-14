@@ -1,0 +1,95 @@
+{
+  "hero": {
+    "title": "人間の「余白」を、\n取り戻す。",
+    "subtitle": "Restore humanity’s white space."
+  },
+  "mission": {
+    "eyebrow": "Mission",
+    "title": "ミッション",
+    "description": "完全自動運転の株式会社を完成させる",
+    "cards": {
+      "humanDirector": {
+        "title": "人間の再定義",
+        "description": "人間は課題を発見し、最後までやり切る責任を持つ仕事を担う。"
+      },
+      "aiWorkforce": {
+        "title": "自己進化",
+        "description": "学習と改善のサイクルを自律的に回し続け、目標達成を継続する。"
+      },
+      "profitable": {
+        "title": "黒字経営",
+        "description": "社会にとって必要な事業を倫理観をもって提供し、経済効果を生み出す。"
+      }
+    }
+  },
+  "business": {
+    "eyebrow": "Business",
+    "title": "事業内容",
+    "description": "自社事業・クライアントワークのいずれも、\nAIで「時間を取り戻す」ことにフォーカスしています。",
+    "items": {
+      "aiWorkflow": {
+        "name": "AI Workflow Design",
+        "description": "業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。"
+      },
+      "shefitHome": {
+        "name": "Shefit-Home（旧PATTORE）",
+        "description": "AIを用いた効率化されたビジネスも展開。女性向け出張パーソナルトレーニングのShefit-Homeは、初回のトレーナーとのマッチングをAIがサポートし、少人数で高品質を維持します。"
+      },
+      "appDevelopment": {
+        "name": "App Development",
+        "description": "AIを用いた高速アプリ開発により世の中のためになるアプリを生産。現在はAIによって作成した「G検定合格アプリ」などがあります。"
+      }
+    }
+  },
+  "values": {
+    "eyebrow": "Value",
+    "title": "バリュー",
+    "description": "以下の3つは、弊社が大事にする意思決定の軸です。",
+    "cards": {
+      "humanFirst": {
+        "title": "ヒューマンファースト",
+        "description": "すべての自動化は「人がより人間らしく生きる」ための手段に過ぎない。目的に沿わないなら自動化しない。"
+      },
+      "fullAutomation": {
+        "title": "オールオートメーション",
+        "description": "人にしかできない判断以外はすべてAIへ。人が問いと創造に集中できる環境をつくる。"
+      },
+      "openPlaybook": {
+        "title": "オープンソースノウハウ",
+        "description": "得られたノウハウを社会に共有し、共創する仲間を増やす。連鎖を生み、人類全体のアップデートを促します。"
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "お問い合わせ",
+    "description": "お問い合わせの内容を確認し、折り返しご連絡させていただきます。",
+    "form": {
+        "name": "お名前",
+        "email": "メールアドレス",
+        "subject": "件名",
+        "message": "メッセージ",
+        "placeholder": {
+            "name": "山田太郎",
+            "email": "example@email.com",
+            "subject": "お問い合わせの件名",
+            "message": "お問い合わせ内容をお書きください"
+        },
+        "submit": "送信する",
+        "submitting": "送信中...",
+        "success": "メッセージが送信されました。24時間以内に担当者よりご連絡いたします。",
+        "error": "送信中にエラーが発生しました。お手数ですが、しばらく時間を置いてから再度お試しください。",
+        "note": "返信は24時間以内を目安に行っております"
+    }
+  },
+  "navigation": {
+    "mission": "MISSION",
+    "business": "BUSINESS",
+    "values": "VALUES",
+    "contact": "お問い合わせ"
+  },
+  "footer": {
+    "copyright": "© 2025 株式会社Human Beings",
+    "privacyPolicy": "プライバシーポリシー"
+  }
+}

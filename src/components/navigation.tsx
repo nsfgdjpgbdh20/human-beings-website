@@ -157,8 +157,10 @@ export function Navigation({ dictionary, lang }: { dictionary: Dictionary['navig
                 <span
                   className={`${
                     lang === "en" ? "translate-x-6" : "translate-x-1"
-                  } inline-block h-5 w-5 transform rounded-full bg-white shadow-sm transition-transform duration-200`}
-                />
+                  } inline-block h-5 w-5 transform rounded-full bg-white shadow-sm transition-transform duration-200 flex items-center justify-center text-[9px] font-bold text-gray-800 leading-none pt-[1px]`}
+                >
+                  {lang === "jp" ? "JP" : "EN"}
+                </span>
               </button>
 
             <motion.button

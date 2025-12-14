@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
-import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu, Instagram } from "lucide-react";
+import { Bot, Users, TrendingUp, Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Locale } from "@/i18n-config";
@@ -58,7 +58,6 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
 
               <div className="grid gap-8 md:grid-cols-3">
                 <ScrollReveal delay={0.1} className="brand-pane p-10 text-left">
-                  <span className="text-xs uppercase tracking-[0.4em] text-gray-500">Human Director</span>
                   <div className="mt-6 flex flex-col gap-4">
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
@@ -73,7 +72,6 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
                 </ScrollReveal>
 
                 <ScrollReveal delay={0.2} className="brand-pane p-10 text-left">
-                  <span className="text-xs uppercase tracking-[0.4em] text-gray-500">AI Workforce</span>
                   <div className="mt-6 flex flex-col gap-4">
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
@@ -88,7 +86,6 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
                 </ScrollReveal>
 
                 <ScrollReveal delay={0.3} className="brand-pane p-10 text-left">
-                  <span className="text-xs uppercase tracking-[0.4em] text-gray-500">Profitable</span>
                   <div className="mt-6 flex flex-col gap-4">
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
@@ -217,10 +214,6 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
         <div className="grid gap-8 md:grid-cols-3">
           <ScrollReveal delay={0.1} className="brand-pane p-10 text-left">
             <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-gray-500">
-                <Heart className="h-4 w-4" />
-                HUMAN FIRST
-              </div>
               <h3 className="text-2xl font-semibold text-gray-900">{dictionary.values.cards.humanFirst.title}</h3>
               <p className="text-base leading-relaxed text-gray-600">
                 {dictionary.values.cards.humanFirst.description}
@@ -230,10 +223,6 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
 
           <ScrollReveal delay={0.2} className="brand-pane p-10 text-left">
             <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-gray-500">
-                <Cpu className="h-4 w-4" />
-                FULL AUTOMATION
-              </div>
               <h3 className="text-2xl font-semibold text-gray-900">{dictionary.values.cards.fullAutomation.title}</h3>
               <p className="text-base leading-relaxed text-gray-600">
                 {dictionary.values.cards.fullAutomation.description}
@@ -243,10 +232,6 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
 
           <ScrollReveal delay={0.3} className="brand-pane p-10 text-left">
             <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-gray-500">
-                <Lightbulb className="h-4 w-4" />
-                OPEN PLAYBOOK
-              </div>
               <h3 className="text-2xl font-semibold text-gray-900">{dictionary.values.cards.openPlaybook.title}</h3>
               <p className="text-base leading-relaxed text-gray-600">
                 {dictionary.values.cards.openPlaybook.description}

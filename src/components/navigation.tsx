@@ -87,9 +87,6 @@ export function Navigation({ dictionary, lang }: { dictionary: Dictionary['navig
           ? "bg-[var(--background)]/95 backdrop-blur-2xl border-b border-gray-300/50 shadow-[0_12px_40px_-32px_rgba(15,23,42,0.35)]" 
           : "bg-transparent"
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 1 }}
     >
       <nav className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-24">
@@ -140,24 +137,12 @@ export function Navigation({ dictionary, lang }: { dictionary: Dictionary['navig
               >
                 <span className="sr-only">Toggle Language</span>
                 <span
-                  className={`absolute left-1 z-10 text-[10px] font-bold transition-opacity ${
-                    lang === "jp" ? "opacity-100 text-gray-800" : "opacity-0"
-                  }`}
-                >
-                  JP
-                </span>
-                 <span
-                  className={`absolute right-2 z-10 text-[10px] font-bold transition-opacity ${
-                    lang === "en" ? "opacity-100 text-gray-800" : "opacity-0"
-                  }`}
-                >
-                  EN
-                </span>
-                <span
                   className={`${
                     lang === "en" ? "translate-x-9" : "translate-x-1"
-                  } inline-block h-6 w-6 transform rounded-full bg-white shadow-sm transition-transform duration-200`}
-                />
+                  } inline-block h-6 w-6 transform rounded-full bg-white shadow-sm transition-transform duration-200 flex items-center justify-center text-[10px] font-bold text-gray-800`}
+                >
+                  {lang === "jp" ? "JP" : "EN"}
+                </span>
               </button>
             </motion.div>
           </div>
@@ -233,4 +218,4 @@ export function Navigation({ dictionary, lang }: { dictionary: Dictionary['navig
       </nav>
     </motion.header>
   );
-} 
+}

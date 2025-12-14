@@ -1,10 +1,10 @@
 {
   "hero": {
     "title": "人間の「余白」を、\n取り戻す。",
-    "subtitle": "Restore humanity’s white space."
+    "subtitle": ""
   },
   "mission": {
-    "eyebrow": "Mission",
+    "eyebrow": "",
     "title": "ミッション",
     "description": "完全自動運転の株式会社を完成させる",
     "cards": {
@@ -23,7 +23,7 @@
     }
   },
   "business": {
-    "eyebrow": "Business",
+    "eyebrow": "",
     "title": "事業内容",
     "description": "自社事業・クライアントワークのいずれも、\nAIで「時間を取り戻す」ことにフォーカスしています。",
     "items": {
@@ -42,7 +42,7 @@
     }
   },
   "values": {
-    "eyebrow": "Value",
+    "eyebrow": "",
     "title": "バリュー",
     "description": "以下の3つは、弊社が大事にする意思決定の軸です。",
     "cards": {
@@ -61,7 +61,7 @@
     }
   },
   "contact": {
-    "eyebrow": "Contact",
+    "eyebrow": "",
     "title": "お問い合わせ",
     "description": "お問い合わせの内容を確認し、折り返しご連絡させていただきます。",
     "form": {

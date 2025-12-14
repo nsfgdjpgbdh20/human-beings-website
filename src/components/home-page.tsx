@@ -28,7 +28,9 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
               <h1 className="text-[clamp(3rem,7vw,6rem)] leading-tight text-gray-900">
                 <span className="block whitespace-pre-wrap">{dictionary.hero.title}</span>
               </h1>
-              <p className="text-lg text-gray-500">{dictionary.hero.subtitle}</p>
+              {dictionary.hero.subtitle && (
+                <p className="text-lg text-gray-500">{dictionary.hero.subtitle}</p>
+              )}
             </div>
           </div>
         </div>
@@ -41,9 +43,11 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
           <div className="container mx-auto max-w-6xl px-6 lg:px-12">
             <ScrollReveal className="flex flex-col gap-16">
               <div className="flex flex-col items-center gap-6 text-center">
-                <div className="eyebrow">
-                  <span>{dictionary.mission.eyebrow}</span>
-                </div>
+                {dictionary.mission.eyebrow && (
+                  <div className="eyebrow">
+                    <span>{dictionary.mission.eyebrow}</span>
+                  </div>
+                )}
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">{dictionary.mission.title}</h2>
                 <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
                   {dictionary.mission.description}
@@ -111,9 +115,11 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
           <div className="container mx-auto max-w-6xl px-6 lg:px-12">
             <ScrollReveal className="flex flex-col gap-16">
               <div className="flex flex-col items-center gap-6 text-center">
-                <div className="eyebrow">
-                  <span>{dictionary.business.eyebrow}</span>
-                </div>
+                {dictionary.business.eyebrow && (
+                  <div className="eyebrow">
+                    <span>{dictionary.business.eyebrow}</span>
+                  </div>
+                )}
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">{dictionary.business.title}</h2>
                 <p className="max-w-3xl text-xl leading-relaxed text-gray-600 whitespace-pre-wrap">
                   {dictionary.business.description}
@@ -195,9 +201,11 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
     <div className="container mx-auto max-w-6xl px-6 lg:px-12">
       <ScrollReveal className="flex flex-col gap-16">
         <div className="flex flex-col items-center gap-6 text-center">
-          <div className="eyebrow">
-            <span>{dictionary.values.eyebrow}</span>
-          </div>
+          {dictionary.values.eyebrow && (
+            <div className="eyebrow">
+              <span>{dictionary.values.eyebrow}</span>
+            </div>
+          )}
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">{dictionary.values.title}</h2>
           <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
             {dictionary.values.description}
@@ -260,9 +268,11 @@ export function HomePage({ dictionary, lang }: { dictionary: Dictionary, lang: L
           <div className="container mx-auto max-w-5xl px-6 lg:px-12">
             <ScrollReveal className="brand-pane px-10 py-12">
               <div className="flex flex-col gap-8 text-center">
-                <div className="eyebrow justify-center">
-                  <span>{dictionary.contact.eyebrow}</span>
-                </div>
+                {dictionary.contact.eyebrow && (
+                  <div className="eyebrow justify-center">
+                    <span>{dictionary.contact.eyebrow}</span>
+                  </div>
+                )}
                 <h2 className="text-4xl sm:text-5xl font-medium text-gray-900">{dictionary.contact.title}</h2>
                 <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
                   {dictionary.contact.description}

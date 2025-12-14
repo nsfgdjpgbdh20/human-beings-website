@@ -1,10 +1,10 @@
 {
   "hero": {
     "title": "Reclaiming the\nHuman \"White Space\".",
-    "subtitle": "Restore humanity’s white space."
+    "subtitle": ""
   },
   "mission": {
-    "eyebrow": "Mission",
+    "eyebrow": "",
     "title": "Mission",
     "description": "Complete the Fully Autonomous Corporation.",
     "cards": {
@@ -23,7 +23,7 @@
     }
   },
   "business": {
-    "eyebrow": "Business",
+    "eyebrow": "",
     "title": "Business",
     "description": "Whether in-house or client work,\nwe focus on \"reclaiming time\" with AI.",
     "items": {
@@ -42,7 +42,7 @@
     }
   },
   "values": {
-    "eyebrow": "Value",
+    "eyebrow": "",
     "title": "Value",
     "description": "The following three are the axes of our decision-making.",
     "cards": {
@@ -61,7 +61,7 @@
     }
   },
   "contact": {
-    "eyebrow": "Contact",
+    "eyebrow": "",
     "title": "Contact",
     "description": "We will review your inquiry and get back to you.",
     "form": {

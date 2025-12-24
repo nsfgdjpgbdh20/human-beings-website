@@ -6,9 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
 
-type Dictionary = typeof import("@/dictionaries/jp.json");
-
-export function ContactForm({ dictionary }: { dictionary: Dictionary['contact']['form'] }) {
+export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,7 +56,8 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
       <div className="space-y-8">
         <div className="space-y-3">
           <label htmlFor="name" className="form-label">
-            <span className="form-label-en">{dictionary.name}</span>
+            <span className="form-label-en">NAME</span>
+            <span className="form-label-jp">お名前</span>
           </label>
           <Input
             id="name"
@@ -66,7 +65,7 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
             type="text"
             value={formData.name}
             onChange={handleChange}
-            placeholder={dictionary.placeholder.name}
+            placeholder="山田太郎"
             required
             className="form-input"
           />
@@ -74,7 +73,8 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
 
         <div className="space-y-3">
           <label htmlFor="email" className="form-label">
-            <span className="form-label-en">{dictionary.email}</span>
+            <span className="form-label-en">EMAIL</span>
+            <span className="form-label-jp">メールアドレス</span>
           </label>
           <Input
             id="email"
@@ -82,7 +82,7 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
             type="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder={dictionary.placeholder.email}
+            placeholder="example@email.com"
             required
             className="form-input"
           />
@@ -90,7 +90,8 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
 
         <div className="space-y-3">
           <label htmlFor="subject" className="form-label">
-            <span className="form-label-en">{dictionary.subject}</span>
+            <span className="form-label-en">SUBJECT</span>
+            <span className="form-label-jp">件名</span>
           </label>
           <Input
             id="subject"
@@ -98,7 +99,7 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
             type="text"
             value={formData.subject}
             onChange={handleChange}
-            placeholder={dictionary.placeholder.subject}
+            placeholder="お問い合わせの件名"
             required
             className="form-input"
           />
@@ -106,14 +107,15 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
 
         <div className="space-y-3">
           <label htmlFor="message" className="form-label">
-            <span className="form-label-en">{dictionary.message}</span>
+            <span className="form-label-en">MESSAGE</span>
+            <span className="form-label-jp">メッセージ</span>
           </label>
           <Textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder={dictionary.placeholder.message}
+            placeholder="お問い合わせ内容をお書きください"
             required
             rows={8}
             className="form-textarea"
@@ -123,29 +125,29 @@ export function ContactForm({ dictionary }: { dictionary: Dictionary['contact'][
 
       {submitStatus === "success" && (
         <div className="form-status form-status-success">
-          {dictionary.success}
+          メッセージが送信されました。24時間以内に担当者よりご連絡いたします。
         </div>
       )}
 
       {submitStatus === "error" && (
         <div className="form-status form-status-error">
-          {dictionary.error}
+          送信中にエラーが発生しました。お手数ですが、しばらく時間を置いてから再度お試しください。
         </div>
       )}
 
       <div className="flex flex-col items-center gap-5 text-center">
-        <p className="text-xs tracking-[0.25em] text-gray-500">{dictionary.note}</p>
+        <p className="text-xs tracking-[0.25em] text-gray-500">返信は24時間以内を目安に行っております</p>
         <Button
           type="submit"
           disabled={isSubmitting}
           className="inline-flex w-full items-center justify-center gap-4 rounded-[1.75rem] border border-gray-900 bg-gray-900 px-16 py-7 text-base font-semibold tracking-[0.28em] text-white transition-all duration-200 hover:bg-gray-800"
         >
           {isSubmitting ? (
-            <span>{dictionary.submitting}</span>
+            <span>送信中...</span>
           ) : (
             <span className="flex items-center gap-3">
               <Send className="h-4 w-4" />
-              {dictionary.submit}
+              送信する
             </span>
           )}
         </Button>

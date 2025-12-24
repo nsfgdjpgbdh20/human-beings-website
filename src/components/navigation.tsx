@@ -74,7 +74,7 @@ export function Navigation() {
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.3 }}
     >
       <nav className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-24">

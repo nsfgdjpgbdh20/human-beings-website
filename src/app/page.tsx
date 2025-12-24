@@ -130,6 +130,12 @@ export default function HomePage() {
                   href: 'https://n8n.io/creators/nakayama/',
                   isExternal: true
                 }, {
+                  logo: '/images/lemonsqueezy.jpeg',
+                  name: 'Global Workflow Templates',
+                  description: '品質管理の行き届いた質の高いワークフローや、日本独自の文化を翻訳したプロダクトを海外で販売します。',
+                  href: 'https://autobeing.lemonsqueezy.com/',
+                  isExternal: true
+                }, {
                   logo: '/images/shefit-home.jpg',
                   name: 'Shefit-Home（旧PATTORE）',
                   description: 'AIを用いた効率化されたビジネスも展開。女性向け出張パーソナルトレーニングのShefit-Homeは、初回のトレーナーとのマッチングをAIがサポートし、少人数で高品質を維持します。',

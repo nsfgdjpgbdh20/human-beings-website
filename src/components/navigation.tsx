@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,44 +27,53 @@ export function Navigation() {
     { name: "VALUES", href: "#values" },
   ];
 
-  const handleSmoothScroll = (
+  const handleSmoothScroll = async (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (!href.startsWith("#")) {
-      return;
-    }
-
     e.preventDefault();
-
-    const targetId = href.slice(1);
-    const targetElement = document.getElementById(targetId);
-
     setIsOpen(false);
 
-    if (!targetElement) {
-      return;
-    }
+    if (pathname === "/") {
+      if (!href.startsWith("#")) {
+        // If it's a regular link (not anchor) and we're on home, just push
+         router.push(href);
+         return;
+      }
+      // On Homepage, scroll to ID
+      const targetId = href.slice(1);
+      const targetElement = document.getElementById(targetId);
 
-    const headerOffset = 96;
-    const elementPosition =
-      targetElement.getBoundingClientRect().top + window.scrollY;
-    const offsetPosition = Math.max(elementPosition - headerOffset, 0);
+      if (!targetElement) {
+        return;
+      }
 
-    const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-    const delay = isMobile ? 350 : 0;
+      const headerOffset = 96;
+      const elementPosition =
+        targetElement.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = Math.max(elementPosition - headerOffset, 0);
 
-    const scrollToTarget = () => {
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    };
+      const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+      const delay = isMobile ? 350 : 0;
 
-    if (delay) {
-      window.setTimeout(scrollToTarget, delay);
+      const scrollToTarget = () => {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      };
+
+      if (delay) {
+        window.setTimeout(scrollToTarget, delay);
+      } else {
+        requestAnimationFrame(scrollToTarget);
+      }
     } else {
-      requestAnimationFrame(scrollToTarget);
+      // Not on Homepage, navigate to "/" + href (e.g., /#mission)
+      // Next.js handles the scroll automatically if the hash is present,
+      // but sometimes it needs a little help or just a hard navigation.
+      // We'll construct the full URL.
+      router.push(`/${href}`);
     }
   };
 
@@ -108,13 +120,17 @@ export function Navigation() {
               whileTap={{ scale: 0.97 }}
               className="ml-4"
             >
-              <a 
-                href="#contact"
-                onClick={(e) => handleSmoothScroll(e, "#contact")}
+              <Link
+                href={pathname === "/" ? "#contact" : "/contact"}
+                 onClick={(e) => {
+                  if (pathname === "/") {
+                     handleSmoothScroll(e, "#contact");
+                  }
+                 }}
                 className="inline-flex items-center justify-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-3 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white whitespace-nowrap"
               >
                 お問い合わせ
-              </a>
+              </Link>
             </motion.div>
           </div>
 
@@ -160,13 +176,19 @@ export function Navigation() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <a
-                    href="#contact"
-                    onClick={(e) => handleSmoothScroll(e, "#contact")}
+                  <Link
+                    href={pathname === "/" ? "#contact" : "/contact"}
+                     onClick={(e) => {
+                      if (pathname === "/") {
+                         handleSmoothScroll(e, "#contact");
+                      } else {
+                        setIsOpen(false);
+                      }
+                     }}
                     className="block w-full text-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-4 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white cursor-pointer whitespace-nowrap"
                   >
                     お問い合わせ
-                  </a>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>

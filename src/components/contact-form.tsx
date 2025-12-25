@@ -33,6 +33,8 @@ export function ContactForm() {
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
+        // Redirect to thanks page
+        window.location.href = "/thanks";
       } else {
         setSubmitStatus("error");
       }

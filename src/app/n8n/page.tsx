@@ -77,9 +77,10 @@ export default function N8nPage() {
       <section className="relative section-spacing bg-gray-50/50">
         <div className="container mx-auto max-w-6xl px-6 lg:px-12">
             <ScrollReveal className="flex flex-col gap-12">
-                 <div className="text-center space-y-4">
+                 <div className="flex flex-col items-center gap-6 text-center">
+                    <div className="eyebrow"><span>ISSUES</span></div>
                      <h2 className="text-3xl font-bold text-gray-900">こんな課題を解決します</h2>
-                     <p className="text-gray-600">部門を横断した複雑な業務フローも、n8nなら柔軟に自動化可能です。</p>
+                     <p className="max-w-3xl text-gray-600">部門を横断した複雑な業務フローも、n8nなら柔軟に自動化可能です。</p>
                  </div>
                  <div className="grid md:grid-cols-3 gap-8">
                      {[
@@ -241,8 +242,9 @@ export default function N8nPage() {
       {/* FAQ */}
       <section className="relative section-spacing bg-gray-50">
           <div className="container mx-auto max-w-4xl px-6 lg:px-12">
-            <ScrollReveal>
-                <div className="text-center mb-12">
+            <ScrollReveal className="flex flex-col gap-12">
+                <div className="flex flex-col items-center gap-6 text-center">
+                    <div className="eyebrow"><span>FAQ</span></div>
                      <h2 className="text-3xl font-bold text-gray-900">よくある質問</h2>
                 </div>
                 <div className="space-y-6">
@@ -270,16 +272,19 @@ export default function N8nPage() {
       {/* Note Feed */}
       <section className="relative section-spacing">
         <div className="container mx-auto max-w-6xl px-6 lg:px-12">
-            <div className="flex flex-col gap-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-6">
-                    <div className="space-y-2">
-                        <div className="eyebrow"><span>BLOG</span></div>
-                        <h2 className="text-3xl font-bold text-gray-900">Note</h2>
-                        <p className="text-gray-600 text-sm">自動化のナレッジや最新情報を発信しています。</p>
-                    </div>
+            <ScrollReveal className="flex flex-col gap-12">
+                <div className="flex flex-col items-center gap-6 text-center">
+                    <div className="eyebrow"><span>BLOG</span></div>
+                    <h2 className="text-3xl font-bold text-gray-900">Note</h2>
+                    <p className="max-w-3xl text-gray-600">自動化のナレッジや最新情報を発信しています。</p>
                 </div>
                 <NoteFeed feedUrl="https://note.com/humanbeings_ai/m/md605f12236e4/rss" />
-            </div>
+                 <div className="flex justify-center">
+                      <Link href="https://note.com/humanbeings_ai" target="_blank" className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors border-b border-gray-900 pb-0.5 hover:border-gray-600">
+                          View All Note <ArrowRight className="h-3 w-3" />
+                      </Link>
+                 </div>
+            </ScrollReveal>
         </div>
       </section>
 

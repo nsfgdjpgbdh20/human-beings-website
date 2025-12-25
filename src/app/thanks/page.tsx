@@ -29,18 +29,12 @@ export default function ThanksPage() {
                     内容を確認の上、担当者よりご連絡させていただきます。<br/>
                     （通常1〜2営業日以内）
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6 w-full">
                     <Link
                         href="/"
-                        className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-8 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-gray-300 bg-white px-12 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
                     >
                         トップページへ戻る
-                    </Link>
-                    <Link
-                        href="/n8n"
-                        className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-                    >
-                        n8n支援の詳細を見る
                     </Link>
                 </div>
             </div>

@@ -310,18 +310,20 @@ export default function HomePage() {
       {/* Note Feed Section */}
       <section className="relative section-spacing">
         <div className="container mx-auto max-w-6xl px-6 lg:px-12">
-            <ScrollReveal className="flex flex-col gap-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-6">
-                    <div className="space-y-2">
-                        <div className="eyebrow"><span>BLOG</span></div>
-                        <h2 className="text-3xl font-bold text-gray-900">Note</h2>
-                        <p className="text-gray-600 text-sm">最新の取り組みや知見を発信しています。</p>
-                    </div>
-                    <Link href="https://note.com/humanbeings_ai" target="_blank" className="text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors flex items-center gap-1">
-                        View All <ArrowRight className="h-3 w-3" />
-                    </Link>
+            <ScrollReveal className="flex flex-col gap-16">
+                <div className="flex flex-col items-center gap-6 text-center">
+                    <div className="eyebrow"><span>BLOG</span></div>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">Note</h2>
+                    <p className="max-w-3xl text-xl leading-relaxed text-gray-600">最新の取り組みや知見を発信しています。</p>
                 </div>
-                <NoteFeed feedUrl="https://note.com/humanbeings_ai/m/md605f12236e4/rss" />
+                <div className="flex flex-col gap-10">
+                   <NoteFeed feedUrl="https://note.com/humanbeings_ai/m/md605f12236e4/rss" />
+                   <div className="flex justify-center">
+                      <Link href="https://note.com/humanbeings_ai" target="_blank" className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors border-b border-gray-900 pb-0.5 hover:border-gray-600">
+                          View All Note <ArrowRight className="h-3 w-3" />
+                      </Link>
+                   </div>
+                </div>
             </ScrollReveal>
         </div>
       </section>

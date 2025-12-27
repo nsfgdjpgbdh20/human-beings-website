@@ -39,7 +39,7 @@ export default function HomePage() {
             <div className="flex-1 space-y-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-700">
                 <Zap className="h-3 w-3 fill-blue-500 text-blue-500" />
-                n8n Official Creator
+                n8n Verified Creator
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 AI×n8nで、<br />
@@ -48,7 +48,7 @@ export default function HomePage() {
               <p className="text-lg text-gray-600 leading-relaxed">
                 世界中で採用が進むワークフロー自動化ツール「n8n」の導入・構築を支援します。
                 単純作業から解放され、創造的な仕事に集中できる環境をつくりませんか？
-                公認クリエイターが要件定義から実装まで伴走します。
+                認定クリエイターが要件定義から実装まで伴走します。
               </p>
               <div>
                 <Link

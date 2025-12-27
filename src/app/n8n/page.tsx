@@ -50,7 +50,7 @@ export default function N8nPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                   </span>
-                  n8n Official Creator / Expert
+                  n8n Verified Creator
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
                     n8n導入・構築<br/>コンサルティング
@@ -61,7 +61,7 @@ export default function N8nPage() {
                  <p className="max-w-2xl text-lg text-gray-600 leading-relaxed">
                     世界中で急成長中のワークフロー自動化ツール「n8n」を活用し、
                     貴社の業務フローを劇的に効率化します。<br className="hidden sm:block" />
-                    n8n公認クリエイターが要件定義から実装、内製化支援まで伴走します。
+                    n8n認定クリエイターが要件定義から実装、内製化支援まで伴走します。
                 </p>
                  <div className="flex flex-wrap gap-4 pt-4">
                      <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-gray-800 hover:scale-105">

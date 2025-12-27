@@ -31,15 +31,11 @@ export function Navigation() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    e.preventDefault();
-    setIsOpen(false);
+    // Only prevent default if we are on the homepage and it's an anchor link
+    if (pathname === "/" && href.startsWith("#")) {
+      e.preventDefault();
+      setIsOpen(false);
 
-    if (pathname === "/") {
-      if (!href.startsWith("#")) {
-        // If it's a regular link (not anchor) and we're on home, just push
-         router.push(href);
-         return;
-      }
       // On Homepage, scroll to ID
       const targetId = href.slice(1);
       const targetElement = document.getElementById(targetId);
@@ -69,11 +65,8 @@ export function Navigation() {
         requestAnimationFrame(scrollToTarget);
       }
     } else {
-      // Not on Homepage, navigate to "/" + href (e.g., /#mission)
-      // Next.js handles the scroll automatically if the hash is present,
-      // but sometimes it needs a little help or just a hard navigation.
-      // We'll construct the full URL.
-      router.push(`/${href}`);
+      setIsOpen(false);
+      // Let the default navigation happen
     }
   };
 
@@ -91,11 +84,15 @@ export function Navigation() {
       <nav className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0">
+          <a
+            href="/"
+            className="flex items-center flex-shrink-0"
+            onClick={() => setIsOpen(false)}
+          >
             <span className="text-[13px] font-semibold tracking-[0.42em] text-gray-800 uppercase whitespace-nowrap">
               Human Beings Inc.
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1.5">
@@ -106,7 +103,7 @@ export function Navigation() {
                 transition={{ type: "spring", stiffness: 320, damping: 24 }}
               >
                 <a
-                  href={item.href}
+                  href={pathname === "/" ? item.href : `/${item.href}`}
                   onClick={(e) => handleSmoothScroll(e, item.href)}
                   className="text-[12px] tracking-[0.35em] text-gray-600 hover:text-gray-900 transition-all duration-300 px-5 py-3 rounded-full border border-transparent hover:border-gray-300/70 hover:bg-white/70 backdrop-blur-sm whitespace-nowrap cursor-pointer"
                 >
@@ -120,7 +117,7 @@ export function Navigation() {
               whileTap={{ scale: 0.97 }}
               className="ml-4"
             >
-              <Link
+              <a
                 href={pathname === "/" ? "#contact" : "/contact"}
                  onClick={(e) => {
                   if (pathname === "/") {
@@ -130,7 +127,7 @@ export function Navigation() {
                 className="inline-flex items-center justify-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-3 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white whitespace-nowrap"
               >
                 お問い合わせ
-              </Link>
+              </a>
             </motion.div>
           </div>
 
@@ -163,7 +160,7 @@ export function Navigation() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <a
-                      href={item.href}
+                      href={pathname === "/" ? item.href : `/${item.href}`}
                       onClick={(e) => handleSmoothScroll(e, item.href)}
                       className="block text-lg font-medium tracking-[0.2em] text-gray-700 hover:text-gray-900 transition-all duration-300 py-3 px-6 rounded-2xl border border-transparent hover:border-gray-300/60 hover:bg-white/70 backdrop-blur-sm cursor-pointer"
                     >
@@ -176,7 +173,7 @@ export function Navigation() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <Link
+                  <a
                     href={pathname === "/" ? "#contact" : "/contact"}
                      onClick={(e) => {
                       if (pathname === "/") {
@@ -188,7 +185,7 @@ export function Navigation() {
                     className="block w-full text-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-4 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white cursor-pointer whitespace-nowrap"
                   >
                     お問い合わせ
-                  </Link>
+                  </a>
                 </motion.div>
               </div>
             </motion.div>

@@ -12,7 +12,7 @@ interface WorkflowCircuitProps {
 export function WorkflowCircuit({ className, variant = "hero" }: WorkflowCircuitProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const controls = useAnimation();
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
 
   useEffect(() => {
     if (isInView) {

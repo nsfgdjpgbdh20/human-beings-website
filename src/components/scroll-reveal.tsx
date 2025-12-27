@@ -15,11 +15,14 @@ export function ScrollReveal({
   children,
   className,
   delay = 0,
-  yOffset = 40,
+  yOffset = 20,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const controls = useAnimation();
-  const isInView = useInView(ref, { margin: "-20% 0px -10% 0px", once: true });
+  // Relaxed margins for better mobile detection:
+  // Trigger when element is 50px above the bottom of viewport.
+  // Top margin 0px means it triggers immediately if it enters from top (or is already there).
+  const isInView = useInView(ref, { margin: "0px 0px -50px 0px", once: true });
 
   useEffect(() => {
     if (isInView) {
@@ -36,7 +39,7 @@ export function ScrollReveal({
         hidden: { opacity: 0, y: yOffset },
         visible: { opacity: 1, y: 0 },
       }}
-      transition={{ duration: 0.8, ease: "easeOut", delay }}
+      transition={{ duration: 0.5, ease: "easeOut", delay }}
       className={cn("will-change-transform", className)}
     >
       {children}

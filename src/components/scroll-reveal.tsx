@@ -19,7 +19,8 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const controls = useAnimation();
-  const isInView = useInView(ref, { margin: "-20% 0px -10% 0px", once: true });
+  // モバイル対応: マージンを緩和してコンテンツが表示されるように
+  const isInView = useInView(ref, { amount: 0.1, once: true });
 
   useEffect(() => {
     if (isInView) {

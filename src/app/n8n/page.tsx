@@ -3,7 +3,7 @@ import { Navigation } from "@/components/navigation";
 import { NoteFeed } from "@/components/note-feed";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { CheckCircle, ArrowRight, Zap, Shield, Database, Layout, PlayCircle } from "lucide-react";
+import { CheckCircle, ArrowRight, Zap, Shield, Database, Layout, ExternalLink, Sparkles, MessageSquare, Music, Image, FileText, Bot, Instagram, Twitter, Search, Table } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -146,43 +146,155 @@ export default function N8nPage() {
         </div>
       </section>
 
-       {/* Achievements */}
-       <section className="relative section-spacing bg-gray-50">
+       {/* Achievements - Redesigned n8n Templates Section */}
+       <section className="relative section-spacing n8n-section-bg" id="works">
         <div className="container mx-auto max-w-6xl px-6 lg:px-12">
              <ScrollReveal className="flex flex-col gap-12">
-                 <div className="text-center space-y-4">
+                 {/* Section Header */}
+                 <div className="text-center space-y-6">
                      <div className="eyebrow justify-center"><span>WORKS</span></div>
                      <h2 className="text-3xl font-bold text-gray-900">構築実績・テンプレート</h2>
-                     <p className="text-gray-600">n8n公式テンプレートとしても掲載されている高品質なワークフローを提供可能です。</p>
+                     <p className="max-w-3xl mx-auto text-gray-600 leading-relaxed">
+                       n8n公式クリエーターとして認定されたワークフローテンプレート。<br className="hidden sm:block" />
+                       Google Sheets、Slack、AIなど、最新技術を組み合わせた7つの実例を公開。
+                     </p>
+                     {/* n8n Verified Creator Badge */}
+                     <div className="flex justify-center pt-2">
+                       <div className="n8n-verified-badge">
+                         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                         </svg>
+                         n8n Verified Creator
+                       </div>
+                     </div>
                  </div>
 
+                 {/* Workflow Cards Grid */}
                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                      {[
-                         { title: "Instagramハッシュタグ自動作成", desc: "AIによるキャプションのいいね数/コメント数の分析でハッシュタグを最適化。" },
-                         { title: "AI×SEO監査", desc: "Google Search ConsoleのデータをAIが監視し、急落をSlackへ自動通知。" },
-                         { title: "Podcastの自動要約", desc: "音声ファイルをダウンロードし、AIが投稿文を要約文を生成。" },
-                         { title: "Instagramリールの自動投稿", desc: "CreatomateAPIを活用し、承認したアイデアを動画化し自動投稿。" },
-                         { title: "Instagramフィードの自動投稿", desc: "指定したテーマのAIリサーチした結果を図解でまとめて、承認したコンテンツを自動投稿。" },
-                         { title: "メモしたアイデアの具現化提案", desc: "Google Tasksにメモした自動化ワークフローのアイデアを具体的に実現するにはどうするかAIが提案し、Slackに通知。" },
-                         { title: "プロンプトの自動改善フロー", desc: "期待されている出力になるようにプロンプトを生成・評価・改善のループを繰り返し、100点のプロンプトを自動で生成。" }
+                         {
+                           title: "Instagramハッシュタグ最適化",
+                           desc: "AIによるエンゲージメント分析でハッシュタグを自動最適化",
+                           url: "https://n8n.io/workflows/11994-optimize-instagram-hashtags-with-gpt-4o-and-real-engagement-data-via-graph-api/",
+                           techs: [
+                             { name: "Google Sheets", icon: Table },
+                             { name: "Instagram API", icon: Instagram },
+                             { name: "GPT-4o", icon: Bot }
+                           ]
+                         },
+                         {
+                           title: "SEOトラフィック自動監視",
+                           desc: "Search Consoleの急落をAIが検知しSlackへ即座にアラート",
+                           url: "https://n8n.io/workflows/11401-auto-audit-seo-traffic-drops-with-ai-and-google-search-console-to-slack/",
+                           techs: [
+                             { name: "Search Console", icon: Search },
+                             { name: "AI", icon: Sparkles },
+                             { name: "Slack", icon: MessageSquare }
+                           ]
+                         },
+                         {
+                           title: "Podcast自動要約・投稿",
+                           desc: "Whisperで文字起こし、GPT-4oで要約、Slackで承認後X投稿",
+                           url: "https://n8n.io/workflows/9710-podcast-to-x-twitter-pipeline-with-openai-whisper-gpt-4o-and-slack-approval/",
+                           techs: [
+                             { name: "Whisper", icon: Music },
+                             { name: "GPT-4o", icon: Bot },
+                             { name: "X/Twitter", icon: Twitter }
+                           ]
+                         },
+                         {
+                           title: "Instagramカルーセル自動作成",
+                           desc: "AIリサーチからデザイン生成、承認後に自動投稿まで一貫対応",
+                           url: "https://n8n.io/workflows/11694-create-and-publish-instagram-carousels-with-ai-research-nano-banana-pro-and-slack/",
+                           techs: [
+                             { name: "AI Research", icon: Sparkles },
+                             { name: "Creatomate", icon: Image },
+                             { name: "Instagram", icon: Instagram }
+                           ]
+                         },
+                         {
+                           title: "アイデア具現化AIアシスタント",
+                           desc: "Google Sheetsのメモを実装計画に変換しSlackへ提案通知",
+                           url: "https://n8n.io/workflows/11362-convert-task-ideas-to-implementation-plans-with-gpt-4o-slack-and-google-sheets/",
+                           techs: [
+                             { name: "Google Sheets", icon: Table },
+                             { name: "GPT-4o", icon: Bot },
+                             { name: "Slack", icon: MessageSquare }
+                           ]
+                         },
+                         {
+                           title: "AIプロンプト自動最適化",
+                           desc: "OPRO・DSPy手法で評価→改善ループを自動化し最適解を導出",
+                           url: "https://n8n.io/workflows/11495-automatically-optimize-ai-prompts-with-openai-using-opro-and-dspy-methodology/",
+                           techs: [
+                             { name: "OpenAI", icon: Bot },
+                             { name: "DSPy", icon: Sparkles },
+                             { name: "OPRO", icon: Zap }
+                           ]
+                         },
+                         {
+                           title: "Instagramリール自動制作",
+                           desc: "GPTでコンテンツ企画、Creatomateで動画生成、自動投稿",
+                           url: "https://n8n.io/workflows/11631-ai-driven-instagram-reels-creation-and-publishing-with-gpt-creatomate-and-slack/",
+                           techs: [
+                             { name: "GPT-4", icon: Bot },
+                             { name: "Creatomate", icon: Image },
+                             { name: "Instagram", icon: Instagram }
+                           ]
+                         }
                      ].map((item, idx) => (
-                         <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                             <div className="flex items-start gap-4">
-                                 <div className="mt-1 min-w-[24px]">
-                                     <PlayCircle className="h-6 w-6 text-gray-400" />
+                         <Link
+                           key={idx}
+                           href={item.url}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="n8n-workflow-card group cursor-pointer block"
+                         >
+                             <div className="flex flex-col h-full">
+                                 {/* Card Header */}
+                                 <div className="flex items-start justify-between gap-3 mb-3">
+                                     <h3 className="font-bold text-gray-900 text-base leading-snug group-hover:text-[var(--n8n-orange)] transition-colors">
+                                       {item.title}
+                                     </h3>
+                                     <ExternalLink className="h-4 w-4 text-gray-300 group-hover:text-[var(--n8n-orange)] transition-colors flex-shrink-0 mt-0.5" />
                                  </div>
-                                 <div>
-                                     <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-                                     <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+
+                                 {/* Description */}
+                                 <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                   {item.desc}
+                                 </p>
+
+                                 {/* Tech Badges */}
+                                 <div className="flex flex-wrap gap-2 mt-auto pt-3 border-t border-gray-100">
+                                     {item.techs.map((tech, techIdx) => (
+                                         <span key={techIdx} className="n8n-tech-badge">
+                                             <tech.icon className="h-3 w-3" />
+                                             {tech.name}
+                                         </span>
+                                     ))}
                                  </div>
                              </div>
-                         </div>
+                         </Link>
                      ))}
                  </div>
 
-                 <div className="flex justify-center mt-8">
-                     <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-gray-900 px-10 py-4 text-base font-semibold text-white transition-all hover:bg-gray-800">
+                 {/* Bottom CTAs */}
+                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+                     <Link
+                       href="https://n8n.io/creators/nakayama/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="n8n-cta-button"
+                     >
+                        すべてのテンプレートを見る
+                        <ExternalLink className="h-4 w-4" />
+                     </Link>
+                     <Link
+                       href="/contact"
+                       className="inline-flex items-center justify-center rounded-full border-2 border-gray-900 bg-transparent px-8 py-3 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-900 hover:text-white"
+                     >
                         実績について詳しく聞く
+                        <ArrowRight className="ml-2 h-4 w-4" />
                      </Link>
                  </div>
              </ScrollReveal>

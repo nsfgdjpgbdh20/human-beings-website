@@ -60,6 +60,12 @@
   --accent: #121212;
   --accent-foreground: #ffffff;
   --electric: #00b7ff;
+  /* n8n Brand Colors */
+  --n8n-orange: #FF6B35;
+  --n8n-orange-light: #FF8A5C;
+  --n8n-orange-dark: #E55A2B;
+  --n8n-dark: #2C3E50;
+  --n8n-dark-light: #34495E;
   --destructive: #ef4444;
   --border: #e0ded3;
   --input: #d9d7cd;
@@ -318,12 +324,76 @@
   }
   
   .bg-pattern {
-    background-image: 
+    background-image:
       radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
       linear-gradient(45deg, rgba(147, 197, 253, 0.02) 25%, transparent 25%),
       linear-gradient(-45deg, rgba(147, 197, 253, 0.02) 25%, transparent 25%);
     background-size: 60px 60px, 60px 60px, 30px 30px, 30px 30px;
+  }
+
+  /* n8n Workflow Card Styles */
+  .n8n-workflow-card {
+    @apply relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 ease-out;
+    box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.08);
+  }
+
+  .n8n-workflow-card:hover {
+    @apply border-[var(--n8n-orange)]/40;
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 20px 40px -16px rgba(255, 107, 53, 0.2);
+  }
+
+  .n8n-workflow-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--n8n-orange), var(--n8n-orange-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .n8n-workflow-card:hover::before {
+    opacity: 1;
+  }
+
+  .n8n-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide;
+    background: linear-gradient(135deg, var(--n8n-orange), var(--n8n-orange-light));
+    color: white;
+  }
+
+  .n8n-tech-badge {
+    @apply inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] font-medium text-gray-600 transition-colors;
+  }
+
+  .n8n-tech-badge:hover {
+    @apply border-[var(--n8n-orange)]/30 bg-[var(--n8n-orange)]/5 text-[var(--n8n-dark)];
+  }
+
+  .n8n-cta-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200;
+    background: linear-gradient(135deg, var(--n8n-orange), var(--n8n-orange-dark));
+    color: white;
+  }
+
+  .n8n-cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px rgba(255, 107, 53, 0.4);
+  }
+
+  .n8n-verified-badge {
+    @apply inline-flex items-center gap-2 rounded-full border-2 px-4 py-2 text-xs font-bold uppercase tracking-wider;
+    border-color: var(--n8n-orange);
+    color: var(--n8n-orange);
+    background: rgba(255, 107, 53, 0.05);
+  }
+
+  .n8n-section-bg {
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%);
   }
 }
 

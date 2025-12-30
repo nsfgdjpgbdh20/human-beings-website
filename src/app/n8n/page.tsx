@@ -3,7 +3,7 @@ import { Navigation } from "@/components/navigation";
 import { NoteFeed } from "@/components/note-feed";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { CheckCircle, ArrowRight, Zap, Shield, Database, Layout, ExternalLink, Sparkles, MessageSquare, Music, Image, FileText, Bot, Instagram, Twitter, Search, Table } from "lucide-react";
+import { CheckCircle, ArrowRight, Zap, Shield, Database, Layout, ExternalLink, Sparkles, MessageSquare, Music, Image, Bot, Instagram, Twitter, Search, Table } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {

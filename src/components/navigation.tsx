@@ -6,74 +6,207 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
+// Navigation items configuration
+const NAV_ITEMS = [
+  { name: "MISSION", href: "#mission" },
+  { name: "BUSINESS", href: "#business" },
+  { name: "VALUES", href: "#values" },
+] as const;
+
+const CONTACT_ITEM = { name: "お問い合わせ", href: "#contact" } as const;
+
+// Constants
+const HEADER_OFFSET = 96;
+const MOBILE_MENU_DELAY = 350;
+const SCROLL_THRESHOLD = 50;
+
+// Helper: Check if we're on homepage with anchor link
+function isHomepageAnchor(pathname: string, href: string): boolean {
+  return pathname === "/" && href.startsWith("#");
+}
+
+// Helper: Build correct href based on current pathname
+function buildHref(pathname: string, href: string): string {
+  return pathname === "/" ? href : `/${href}`;
+}
+
+// Helper: Calculate scroll position with header offset
+function calculateScrollPosition(element: HTMLElement): number {
+  const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+  return Math.max(elementPosition - HEADER_OFFSET, 0);
+}
+
+// Helper: Determine if device is mobile
+function isMobileDevice(): boolean {
+  return window.matchMedia("(max-width: 1023px)").matches;
+}
+
+// Helper: Smooth scroll to target position
+function scrollToPosition(position: number, delay: number = 0): void {
+  const performScroll = () => {
+    window.scrollTo({
+      top: position,
+      behavior: "smooth",
+    });
+  };
+
+  if (delay > 0) {
+    window.setTimeout(performScroll, delay);
+  } else {
+    requestAnimationFrame(performScroll);
+  }
+}
+
+// Custom hook for smooth scroll handling
+function useSmoothScroll(pathname: string, onNavigate: () => void) {
+  return (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Only handle smooth scroll on homepage with anchor links
+    if (!isHomepageAnchor(pathname, href)) {
+      onNavigate();
+      return;
+    }
+
+    e.preventDefault();
+    onNavigate();
+
+    // Find and scroll to target element
+    const targetId = href.slice(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (!targetElement) return;
+
+    const scrollPosition = calculateScrollPosition(targetElement);
+    const delay = isMobileDevice() ? MOBILE_MENU_DELAY : 0;
+    scrollToPosition(scrollPosition, delay);
+  };
+}
+
+// NavLink component for reusable navigation links
+interface NavLinkProps {
+  item: { name: string; href: string };
+  pathname: string;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  className?: string;
+}
+
+function NavLink({ item, pathname, onClick, className = "" }: NavLinkProps) {
+  return (
+    <a
+      href={buildHref(pathname, item.href)}
+      onClick={(e) => onClick(e, item.href)}
+      className={className}
+    >
+      {item.name}
+    </a>
+  );
+}
+
+// Desktop NavLink with animation wrapper
+function DesktopNavLink({ item, pathname, onClick }: NavLinkProps) {
+  return (
+    <motion.div
+      whileHover={{ y: -2 }}
+      transition={{ type: "spring", stiffness: 320, damping: 24 }}
+    >
+      <NavLink
+        item={item}
+        pathname={pathname}
+        onClick={onClick}
+        className="text-[12px] tracking-[0.35em] text-gray-600 hover:text-gray-900 transition-all duration-300 px-5 py-3 rounded-full border border-transparent hover:border-gray-300/70 hover:bg-white/70 backdrop-blur-sm whitespace-nowrap cursor-pointer"
+      />
+    </motion.div>
+  );
+}
+
+// Mobile NavLink with animation wrapper
+interface MobileNavLinkProps extends NavLinkProps {
+  index: number;
+}
+
+function MobileNavLink({ item, pathname, onClick, index }: MobileNavLinkProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <NavLink
+        item={item}
+        pathname={pathname}
+        onClick={onClick}
+        className="block text-lg font-medium tracking-[0.2em] text-gray-700 hover:text-gray-900 transition-all duration-300 py-3 px-6 rounded-2xl border border-transparent hover:border-gray-300/60 hover:bg-white/70 backdrop-blur-sm cursor-pointer"
+      />
+    </motion.div>
+  );
+}
+
+// Contact button component
+interface ContactButtonProps {
+  pathname: string;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  isMobile?: boolean;
+}
+
+function ContactButton({ pathname, onClick, isMobile = false }: ContactButtonProps) {
+  const baseClasses = "inline-flex items-center justify-center rounded-full border border-gray-400/60 bg-white/80 px-8 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white whitespace-nowrap";
+  const mobileClasses = isMobile ? "block w-full text-center py-4" : "py-3";
+
+  const content = (
+    <a
+      href={buildHref(pathname, CONTACT_ITEM.href)}
+      onClick={(e) => onClick(e, CONTACT_ITEM.href)}
+      className={`${baseClasses} ${mobileClasses} cursor-pointer`}
+    >
+      {CONTACT_ITEM.name}
+    </a>
+  );
+
+  if (isMobile) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        {content}
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.97 }}
+      className="ml-4"
+    >
+      {content}
+    </motion.div>
+  );
+}
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
+  // Handle scroll state
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "MISSION", href: "#mission" },
-    { name: "BUSINESS", href: "#business" },
-    { name: "VALUES", href: "#values" },
-  ];
-
-  const handleSmoothScroll = async (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    // Only prevent default if we are on the homepage and it's an anchor link
-    if (pathname === "/" && href.startsWith("#")) {
-      e.preventDefault();
-      setIsOpen(false);
-
-      // On Homepage, scroll to ID
-      const targetId = href.slice(1);
-      const targetElement = document.getElementById(targetId);
-
-      if (!targetElement) {
-        return;
-      }
-
-      const headerOffset = 96;
-      const elementPosition =
-        targetElement.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = Math.max(elementPosition - headerOffset, 0);
-
-      const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-      const delay = isMobile ? 350 : 0;
-
-      const scrollToTarget = () => {
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      };
-
-      if (delay) {
-        window.setTimeout(scrollToTarget, delay);
-      } else {
-        requestAnimationFrame(scrollToTarget);
-      }
-    } else {
-      setIsOpen(false);
-      // Let the default navigation happen
-    }
-  };
+  // Smooth scroll handler
+  const handleNavClick = useSmoothScroll(pathname, () => setIsOpen(false));
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? "bg-[var(--background)]/95 backdrop-blur-2xl border-b border-gray-300/50 shadow-[0_12px_40px_-32px_rgba(15,23,42,0.35)]" 
+        isScrolled
+          ? "bg-[var(--background)]/95 backdrop-blur-2xl border-b border-gray-300/50 shadow-[0_12px_40px_-32px_rgba(15,23,42,0.35)]"
           : "bg-transparent"
       }`}
       initial={{ y: -100 }}
@@ -95,39 +228,15 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1.5">
-            {navItems.map((item) => (
-              <motion.div
+            {NAV_ITEMS.map((item) => (
+              <DesktopNavLink
                 key={item.name}
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 320, damping: 24 }}
-              >
-                <a
-                  href={pathname === "/" ? item.href : `/${item.href}`}
-                  onClick={(e) => handleSmoothScroll(e, item.href)}
-                  className="text-[12px] tracking-[0.35em] text-gray-600 hover:text-gray-900 transition-all duration-300 px-5 py-3 rounded-full border border-transparent hover:border-gray-300/70 hover:bg-white/70 backdrop-blur-sm whitespace-nowrap cursor-pointer"
-                >
-                  {item.name}
-                </a>
-              </motion.div>
+                item={item}
+                pathname={pathname}
+                onClick={handleNavClick}
+              />
             ))}
-            
-            <motion.div
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className="ml-4"
-            >
-              <a
-                href={pathname === "/" ? "#contact" : "/contact"}
-                 onClick={(e) => {
-                  if (pathname === "/") {
-                     handleSmoothScroll(e, "#contact");
-                  }
-                 }}
-                className="inline-flex items-center justify-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-3 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white whitespace-nowrap"
-              >
-                お問い合わせ
-              </a>
-            </motion.div>
+            <ContactButton pathname={pathname} onClick={handleNavClick} />
           </div>
 
           {/* Mobile menu button */}
@@ -151,41 +260,16 @@ export function Navigation() {
               transition={{ duration: 0.3 }}
             >
               <div className="py-8 px-6 space-y-6">
-                {navItems.map((item, index) => (
-                  <motion.div
+                {NAV_ITEMS.map((item, index) => (
+                  <MobileNavLink
                     key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <a
-                      href={pathname === "/" ? item.href : `/${item.href}`}
-                      onClick={(e) => handleSmoothScroll(e, item.href)}
-                      className="block text-lg font-medium tracking-[0.2em] text-gray-700 hover:text-gray-900 transition-all duration-300 py-3 px-6 rounded-2xl border border-transparent hover:border-gray-300/60 hover:bg-white/70 backdrop-blur-sm cursor-pointer"
-                    >
-                      {item.name}
-                    </a>
-                  </motion.div>
+                    item={item}
+                    pathname={pathname}
+                    onClick={handleNavClick}
+                    index={index}
+                  />
                 ))}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <a
-                    href={pathname === "/" ? "#contact" : "/contact"}
-                     onClick={(e) => {
-                      if (pathname === "/") {
-                         handleSmoothScroll(e, "#contact");
-                      } else {
-                        setIsOpen(false);
-                      }
-                     }}
-                    className="block w-full text-center rounded-full border border-gray-400/60 bg-white/80 px-8 py-4 text-sm tracking-[0.12em] text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white cursor-pointer whitespace-nowrap"
-                  >
-                    お問い合わせ
-                  </a>
-                </motion.div>
+                <ContactButton pathname={pathname} onClick={handleNavClick} isMobile />
               </div>
             </motion.div>
           )}

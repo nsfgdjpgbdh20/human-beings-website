@@ -9,7 +9,7 @@ const { mockParseURL } = vi.hoisted(() => {
 
 vi.mock('rss-parser', () => {
   // Create a mock constructor function
-  const MockParser = function(this: any) {
+  const MockParser = function(this: { parseURL: typeof mockParseURL }) {
     this.parseURL = mockParseURL;
   };
 
@@ -20,7 +20,6 @@ vi.mock('rss-parser', () => {
 
 // Import after mocking
 import { getLatestNoteArticles } from './note';
-import type { NoteArticle } from './note';
 
 describe('getLatestNoteArticles', () => {
   let consoleLogSpy: ReturnType<typeof vi.spyOn>;

@@ -93,7 +93,7 @@ export default function HomePage() {
                 </div>
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">ミッション</h2>
                 <p className="max-w-3xl text-xl leading-relaxed text-gray-600">
-                完全自動運転の株式会社を完成させる
+                完全自動運転の会社を完成させる
                 </p>
               </div>
 

@@ -313,7 +313,7 @@ export default function HomePage() {
             <ScrollReveal className="flex flex-col gap-16">
                 <div className="flex flex-col items-center gap-6 text-center">
                     <div className="eyebrow"><span>BLOG</span></div>
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">Note</h2>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-gray-900">コラム</h2>
                     <p className="max-w-3xl text-xl leading-relaxed text-gray-600">最新の取り組みや知見を発信しています。</p>
                 </div>
                 <div className="flex flex-col gap-10">

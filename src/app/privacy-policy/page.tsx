@@ -167,7 +167,7 @@ export default function PrivacyPolicyPage() {
       <footer className="relative border-t border-gray-300/60 bg-white/80 py-12">
         <div className="container mx-auto flex flex-col items-center gap-4 px-6 text-center">
           <p className="text-sm tracking-[0.35em] text-gray-500">
-            © 2025 株式会社Human Beings
+            © 2026 株式会社Human Beings
           </p>
         </div>
       </footer>

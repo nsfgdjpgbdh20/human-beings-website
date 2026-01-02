@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
 import { NoteFeed } from "@/components/note-feed";
-import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu, Instagram, Zap, ArrowRight } from "lucide-react";
+import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu, Instagram, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,53 +30,6 @@ export default function HomePage() {
               <p className="text-lg text-gray-500">Restore humanity’s white space.</p>
             </div>
           </div>
-        </div>
-      </section>
-      {/* n8n Introduction Section (NEW) */}
-      <section className="relative py-20 bg-gray-50/50">
-        <div className="container mx-auto max-w-6xl px-6 lg:px-12">
-          <ScrollReveal className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-700">
-                <Zap className="h-3 w-3 fill-blue-500 text-blue-500" />
-                n8n Verified Creator
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                AI×n8nで、<br />
-                業務を自動操縦へ。
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                世界中で採用が進むワークフロー自動化ツール「n8n」の導入・構築を支援します。
-                単純作業から解放され、創造的な仕事に集中できる環境をつくりませんか？
-                認定クリエイターが要件定義から実装まで伴走します。
-              </p>
-              <div>
-                <Link
-                  href="/n8n"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-gray-800 hover:scale-105"
-                >
-                  n8n導入支援について詳しく
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-            <div className="flex-1 w-full max-w-md lg:max-w-full">
-              <div className="relative aspect-square w-full rounded-3xl bg-gradient-to-br from-gray-100 to-white border border-gray-200 p-8 shadow-xl flex items-center justify-center overflow-hidden">
-                  <WorkflowCircuit className="w-full h-full opacity-50" variant="hero" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                     <div className="h-20 w-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-gray-100">
-                        <Bot className="h-10 w-10 text-gray-700" />
-                     </div>
-                     <div className="flex flex-col items-center gap-2">
-                        <div className="h-8 w-px bg-gray-300"></div>
-                        <div className="px-4 py-2 bg-white rounded-lg shadow-md border border-gray-100 text-sm font-medium text-gray-600">
-                            Automatic Processing
-                        </div>
-                     </div>
-                  </div>
-              </div>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -176,8 +129,8 @@ export default function HomePage() {
                   logo: '/images/ai-workflow.png',
                   name: 'AI Workflow Design',
                   description: '業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。',
-                  href: 'https://n8n.io/creators/nakayama/',
-                  isExternal: true
+                  href: '/n8n',
+                  isExternal: false
                 }, {
                   logo: '/images/lemonsqueezy.jpeg',
                   name: 'Global Workflow Templates',

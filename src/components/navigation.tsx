@@ -8,9 +8,9 @@ import { usePathname } from "next/navigation";
 
 // Navigation items configuration
 const NAV_ITEMS = [
-  { name: "MISSION", href: "#mission" },
-  { name: "BUSINESS", href: "#business" },
-  { name: "VALUES", href: "#values" },
+  { name: "ミッション", href: "#mission" },
+  { name: "事業内容", href: "#business" },
+  { name: "バリュー", href: "#values" },
 ] as const;
 
 const CONTACT_ITEM = { name: "お問い合わせ", href: "#contact" } as const;

@@ -393,7 +393,7 @@ export default function N8nPage() {
                 <NoteFeed feedUrl="https://note.com/humanbeings_ai/m/md605f12236e4/rss" />
                  <div className="flex justify-center">
                       <Link href="https://note.com/humanbeings_ai" target="_blank" className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors border-b border-gray-900 pb-0.5 hover:border-gray-600">
-                          View All Note <ArrowRight className="h-3 w-3" />
+                          すべてのコラムを見る <ArrowRight className="h-3 w-3" />
                       </Link>
                  </div>
             </ScrollReveal>

@@ -127,25 +127,25 @@ export default function HomePage() {
               <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
                 {[{
                   logo: '/images/ai-workflow.png',
-                  name: 'AI Workflow Design',
+                  name: '業務自動化コンサル',
                   description: '業務自動化のためのAIワークフロー設計から導入、ナレッジベースの構築や運用など代行します。n8nなどのツールを用いて安全に再現性のある自動化を実現します。',
                   href: '/n8n',
                   isExternal: false
                 }, {
                   logo: '/images/lemonsqueezy.jpeg',
-                  name: 'Global Workflow Templates',
+                  name: '海外テンプレート販売',
                   description: '品質管理の行き届いた質の高いワークフローや、日本独自の文化を翻訳したプロダクトを海外で販売します。',
                   href: 'https://autobeing.lemonsqueezy.com/',
                   isExternal: true
                 }, {
                   logo: '/images/shefit-home.jpg',
-                  name: 'Shefit-Home（旧PATTORE）',
+                  name: 'AI事業運営',
                   description: 'AIを用いた効率化されたビジネスも展開。女性向け出張パーソナルトレーニングのShefit-Homeは、初回のトレーナーとのマッチングをAIがサポートし、少人数で高品質を維持します。',
                   href: 'https://www.pattore.com/',
                   isExternal: true
                 }, {
                   logo: '/images/ai-dev-app.png',
-                  name: 'App Development',
+                  name: 'AIアプリ開発',
                   description: 'AIを用いた高速アプリ開発により世の中のためになるアプリを生産。現在はAIによって作成した「G検定合格アプリ」などがあります。',
                   href: 'https://apps.apple.com/jp/app/g%E6%A4%9C%E5%AE%9A%E5%90%88%E6%A0%BC%E3%83%89%E3%83%AA%E3%83%AB/id6745340601',
                   isExternal: true
@@ -245,7 +245,7 @@ export default function HomePage() {
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-gray-500">
                 <Lightbulb className="h-4 w-4" />
-                OPEN PLAYBOOK
+                KNOWLEDGE SHARE
               </div>
               <h3 className="text-2xl font-semibold text-gray-900">オープンソースノウハウ</h3>
               <p className="text-base leading-relaxed text-gray-600">
@@ -273,7 +273,7 @@ export default function HomePage() {
                    <NoteFeed feedUrl="https://note.com/humanbeings_ai/m/md605f12236e4/rss" />
                    <div className="flex justify-center">
                       <Link href="https://note.com/humanbeings_ai" target="_blank" className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors border-b border-gray-900 pb-0.5 hover:border-gray-600">
-                          View All Note <ArrowRight className="h-3 w-3" />
+                          すべてのコラムを見る <ArrowRight className="h-3 w-3" />
                       </Link>
                    </div>
                 </div>

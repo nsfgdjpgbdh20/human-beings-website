@@ -97,7 +97,7 @@ export function NoteFeed({ feedUrl }: NoteFeedProps) {
             </div>
           ) : (
             <div className="relative aspect-video w-full overflow-hidden bg-gray-100 flex items-center justify-center text-gray-400">
-              <span className="text-sm">No Image</span>
+              <span className="text-sm">画像なし</span>
             </div>
           )}
 
@@ -116,7 +116,7 @@ export function NoteFeed({ feedUrl }: NoteFeedProps) {
                 {new Date(article.pubDate).toLocaleDateString("ja-JP")}
               </span>
               <span className="flex items-center gap-1 text-xs font-medium text-gray-900">
-                Read Note <ExternalLink className="h-3 w-3" />
+                記事を読む <ExternalLink className="h-3 w-3" />
               </span>
             </div>
           </div>

@@ -292,7 +292,7 @@ export default function HomePage() {
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-gray-500">
                 <Lightbulb className="h-4 w-4" />
-                OPEN PLAYBOOK
+                KNOWLEDGE SHARE
               </div>
               <h3 className="text-2xl font-semibold text-gray-900">オープンソースノウハウ</h3>
               <p className="text-base leading-relaxed text-gray-600">
@@ -320,7 +320,7 @@ export default function HomePage() {
                    <NoteFeed feedUrl="https://note.com/humanbeings_ai/m/md605f12236e4/rss" />
                    <div className="flex justify-center">
                       <Link href="https://note.com/humanbeings_ai" target="_blank" className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors border-b border-gray-900 pb-0.5 hover:border-gray-600">
-                          View All Note <ArrowRight className="h-3 w-3" />
+                          すべてのコラムを見る <ArrowRight className="h-3 w-3" />
                       </Link>
                    </div>
                 </div>

@@ -192,4 +192,4 @@ human-beings-website/
 
 ---
 
-**© 2025 株式会社Human Beings. All rights reserved.**
+**© 2026 株式会社Human Beings. All rights reserved.**

@@ -426,7 +426,7 @@ export default function N8nPage() {
       {/* Footer (Simplified for LP) */}
       <footer className="bg-white border-t border-gray-200 py-12">
         <div className="container mx-auto text-center px-6">
-             <p className="text-xs tracking-[0.2em] text-gray-500">© 2025 Human Beings Inc.</p>
+             <p className="text-xs tracking-[0.2em] text-gray-500">© 2026 Human Beings Inc.</p>
         </div>
       </footer>
     </div>

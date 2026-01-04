@@ -78,7 +78,7 @@ export default function HomePage() {
                       <h3 className="text-2xl font-semibold text-gray-900">自己改善の設計</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      AIに情報をスムーズに渡せる環境を作り、出力と評価、改善のサイクルを自律的に回す。
+                      AIに情報をスムーズに渡せる環境を作成し、出力・評価・改善のサイクルを自律的に回す。
                     </p>
                   </div>
                 </ScrollReveal>
@@ -93,7 +93,7 @@ export default function HomePage() {
                       <h3 className="text-2xl font-semibold text-gray-900">黒字経営</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      効率化された事業を社会に倫理観をもって提供し、経済効果を生み出す。本来、人間では採算が合わないような新たな産業も生み出し貢献する。
+                      効率化された事業を社会に倫理観をもって提供し、経済効果を生み出す。
                     </p>
                   </div>
                 </ScrollReveal>

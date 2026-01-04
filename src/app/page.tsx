@@ -63,7 +63,7 @@ export default function HomePage() {
                       <h3 className="text-2xl font-semibold text-gray-900">仕事の再定義</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      仕事はAIファーストで再定義を行う。人間の仕事を「課題を発見し、最後までやり切る責任を持つこと」に収束させる。
+                      人間の仕事を「課題を発見し、最後までやり切る責任を持つこと」に収束させる。
                     </p>
                   </div>
                 </ScrollReveal>
@@ -90,7 +90,7 @@ export default function HomePage() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300/70">
                         <TrendingUp className="h-6 w-6 text-gray-800" />
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">黒字経営</h3>
+                      <h3 className="text-2xl font-semibold text-gray-900">社会還元</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
                       効率化された事業を社会に倫理観をもって提供し、経済効果を生み出す。

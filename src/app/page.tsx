@@ -63,7 +63,7 @@ export default function HomePage() {
                       <h3 className="text-2xl font-semibold text-gray-900">仕事の再定義</h3>
                     </div>
                     <p className="text-base leading-relaxed text-gray-600">
-                      AIファーストのタスク設計を行う。人間の仕事は課題を発見し、最後までやり切る責任を持つ仕事を担う。
+                      仕事はAIファーストで再定義を行う。人間の仕事を課題を発見し、最後までやり切る責任を持つことに収束させる。
                     </p>
                   </div>
                 </ScrollReveal>

@@ -112,7 +112,7 @@ function DesktopNavLink({ item, pathname, onClick }: NavLinkProps) {
         item={item}
         pathname={pathname}
         onClick={onClick}
-        className="text-[12px] tracking-[0.35em] text-gray-600 hover:text-gray-900 transition-all duration-300 px-5 py-3 rounded-full border border-transparent hover:border-gray-300/70 hover:bg-white/70 backdrop-blur-sm whitespace-nowrap cursor-pointer"
+        className="text-[14px] tracking-[0.3em] text-gray-600 hover:text-gray-900 transition-all duration-300 px-5 py-3 rounded-full border border-transparent hover:border-gray-300/70 hover:bg-white/70 backdrop-blur-sm whitespace-nowrap cursor-pointer"
       />
     </motion.div>
   );

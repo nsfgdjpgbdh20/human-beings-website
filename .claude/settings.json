@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /Users/nakayamashun/Desktop/test/human-beings-website && npm run lint -- --fix || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /Users/nakayamashun/Desktop/test/human-beings-website && npm run lint && npm run build"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/nakayamashun/Desktop/test/human-beings-website/.claude/scripts/permission-alert.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/nakayamashun/Desktop/test/human-beings-website/.claude/scripts/idle-notification.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

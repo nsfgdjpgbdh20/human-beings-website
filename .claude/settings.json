@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd /Users/nakayamashun/Desktop/test/human-beings-website && npm run lint -- --fix || true"
+            "command": "npm run lint -- --fix || true"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd /Users/nakayamashun/Desktop/test/human-beings-website && npm run lint && npm run build"
+            "command": "npm run lint && npm run build"
           }
         ]
       }
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/nakayamashun/Desktop/test/human-beings-website/.claude/scripts/permission-alert.sh"
+            "command": ".claude/scripts/permission-alert.sh"
           }
         ]
       },
@@ -37,7 +37,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/nakayamashun/Desktop/test/human-beings-website/.claude/scripts/idle-notification.sh"
+            "command": ".claude/scripts/idle-notification.sh"
           }
         ]
       }

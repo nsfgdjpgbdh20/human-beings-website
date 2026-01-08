@@ -24,10 +24,10 @@ export default function HomePage() {
           <div className="container mx-auto max-w-6xl px-6 lg:px-12">
             <div className="space-y-6 max-w-3xl text-left">
               <h1 className="text-[clamp(3rem,7vw,6rem)] leading-tight text-gray-900">
-                <span className="block whitespace-nowrap">人間の時間を、</span>
+                <span className="block whitespace-nowrap">みんなの時間を、</span>
                 <span className="block whitespace-nowrap">取り戻す。</span>
               </h1>
-              <p className="text-lg text-gray-500">Reclaim your time.</p>
+              <p className="text-lg text-gray-500">繰り返しを手放し、新しいことを始める。</p>
             </div>
           </div>
         </div>

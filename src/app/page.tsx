@@ -27,7 +27,7 @@ export default function HomePage() {
                 <span className="block whitespace-nowrap">みんなの時間を、</span>
                 <span className="block whitespace-nowrap">取り戻す。</span>
               </h1>
-              <p className="text-lg text-gray-500">繰り返しを手放し、新しいことを始める。</p>
+              <p className="text-lg text-gray-500">繰り返しを手放し、新しいことを始めよう。</p>
             </div>
           </div>
         </div>

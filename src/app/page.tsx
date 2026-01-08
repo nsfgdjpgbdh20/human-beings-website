@@ -4,6 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
+import { TimeRewind } from "@/components/time-rewind";
 import { NoteFeed } from "@/components/note-feed";
 import { Bot, Users, TrendingUp, Heart, Lightbulb, Cpu, Instagram, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -22,12 +23,18 @@ export default function HomePage() {
 
         <div className="relative">
           <div className="container mx-auto max-w-6xl px-6 lg:px-12">
-            <div className="space-y-6 max-w-3xl text-left">
-              <h1 className="text-[clamp(3rem,7vw,6rem)] leading-tight text-gray-900">
-                <span className="block whitespace-nowrap">みんなの時間を、</span>
-                <span className="block whitespace-nowrap">取り戻す。</span>
-              </h1>
-              <p className="text-lg text-gray-500">繰り返しを手放し、新しいことを始めよう。</p>
+            <div className="flex items-center justify-between gap-12">
+              <div className="space-y-6 max-w-3xl text-left">
+                <h1 className="text-[clamp(3rem,7vw,6rem)] leading-tight text-gray-900">
+                  <span className="block whitespace-nowrap">みんなの時間を、</span>
+                  <span className="block whitespace-nowrap">取り戻す。</span>
+                </h1>
+                <p className="text-lg text-gray-500">繰り返しを手放し、新しいことを始めよう。</p>
+              </div>
+              {/* 時計巻き戻しアニメーション - デスクトップのみ表示 */}
+              <div className="hidden lg:block flex-shrink-0">
+                <TimeRewind size={180} className="opacity-80" />
+              </div>
             </div>
           </div>
         </div>

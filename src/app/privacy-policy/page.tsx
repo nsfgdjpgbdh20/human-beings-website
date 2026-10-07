@@ -1,38 +1,20 @@
-"use client";
+import type { Metadata } from "next";
+import { Navigation } from "@/components/navigation";
+import { SiteFooter } from "@/components/site-footer";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
+export const metadata: Metadata = {
+  title: "プライバシーポリシー",
+  alternates: { canonical: "/privacy-policy" },
+};
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      {/* Simple Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]/95 backdrop-blur-2xl border-b border-gray-300/50">
-        <nav className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-24">
-            <Link href="/" className="flex items-center flex-shrink-0">
-              <span className="text-[13px] font-semibold tracking-[0.42em] text-gray-800 uppercase whitespace-nowrap">
-                Human Beings Inc.
-              </span>
-            </Link>
-
-            <Link
-              href="/"
-              className="text-[12px] tracking-[0.35em] text-gray-600 hover:text-gray-900 transition-all duration-300 px-5 py-3 rounded-full border border-transparent hover:border-gray-300/70 hover:bg-white/70 backdrop-blur-sm whitespace-nowrap"
-            >
-              HOME
-            </Link>
-          </div>
-        </nav>
-      </header>
+      <Navigation />
 
       {/* Main Content */}
-      <main className="container mx-auto max-w-4xl px-6 lg:px-12 py-32 lg:py-40">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+      <main id="main" className="container mx-auto max-w-4xl px-6 lg:px-12 py-16 lg:py-24">
+        <div>
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             プライバシーポリシー
           </h1>
@@ -156,21 +138,12 @@ export default function PrivacyPolicyPage() {
               <div className="mt-8 p-6 bg-gray-50 rounded-lg">
                 <p className="font-semibold">株式会社Human Beings</p>
                 <p>代表者：中山 舜</p>
-                <p>住所：[住所]</p>
               </div>
             </section>
           </div>
-        </motion.div>
-      </main>
-
-      {/* Footer */}
-      <footer className="relative border-t border-gray-300/60 bg-white/80 py-12">
-        <div className="container mx-auto flex flex-col items-center gap-4 px-6 text-center">
-          <p className="text-sm tracking-[0.35em] text-gray-500">
-            © 2026 株式会社Human Beings
-          </p>
         </div>
-      </footer>
+      </main>
+      <SiteFooter />
     </div>
   );
 }

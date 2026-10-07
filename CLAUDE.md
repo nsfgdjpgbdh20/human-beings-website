@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## プロジェクト概要
 
-株式会社Human Beingsのコーポレートサイト。AI駆動の業務自動化を推進する企業のランディングページで、お問い合わせフォーム機能を備えている。
+株式会社Human Beingsのコーポレートサイト。AIコンサルティング・エンジニアリング（FDE型のAI導入支援）の会社として、主力サービス「AI社員くん」と相談窓口を案内する。会社情報・ナビゲーションの定義は `src/lib/site.ts` に集約している。未確認の実績・効果の数値・所在地は掲載しない。
 
 ## コマンド
 
@@ -42,18 +42,22 @@ src/
 │   ├── api/
 │   │   ├── contact/       # お問い合わせAPI（POST /api/contact）
 │   │   └── note-feed/     # note.com用RSSフィードプロキシ
-│   ├── page.tsx           # ホームページ（メインランディング）
-│   ├── contact/           # お問い合わせページ
+│   ├── page.tsx           # トップ（支援内容・AI社員くん・進め方・会社情報・FAQ）
+│   ├── ai-shain/          # AI社員くん詳細
+│   ├── contact/           # ご相談窓口（?topic=ai-shain|n8n で件名の初期値を設定）
 │   ├── n8n/               # n8nサービスページ
 │   ├── privacy-policy/    # プライバシーポリシー
 │   └── thanks/            # サンクスページ（問い合わせ後）
 ├── components/
 │   ├── ui/                # shadcn/ui基本コンポーネント
-│   ├── navigation.tsx     # レスポンシブヘッダー（スムーススクロール対応）
-│   ├── contact-form.tsx   # お問い合わせフォーム（バリデーション付き）
+│   ├── navigation.tsx     # 共通ヘッダー（モバイルメニュー付き）
+│   ├── site-footer.tsx    # 共通フッター
+│   ├── flow-diagram.tsx / chat-sample.tsx  # 表示例の図（架空と明記）
+│   ├── contact-form.tsx   # お問い合わせフォーム（取得項目は名前・メール・件名・本文のみ）
 │   ├── scroll-reveal.tsx  # Framer Motionスクロールアニメーション
 │   └── workflow-circuit.tsx # 装飾用SVGコンポーネント
 └── lib/
+    ├── site.ts            # 会社情報・ナビゲーション・外部リンク
     └── utils.ts           # ユーティリティ関数（cn: クラス名結合）
 ```
 

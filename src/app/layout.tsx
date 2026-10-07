@@ -1,36 +1,44 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-inter",
 });
 
+const TITLE = "株式会社Human Beings | AIコンサルティング・エンジニアリング";
+const DESCRIPTION =
+  "業務の整理から、AIの設計・開発、現場への導入と運用改善まで。株式会社Human Beingsは、企業専用のAIエージェント「AI社員くん」を中心に、AIを現場で働く仕組みにする支援を行います。";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.humanbeings.co.jp"),
-  title: "株式会社Human Beings (ヒューマンビーイングス) | AI導入・業務自動化コンサルティング",
-  description: "AIとn8nを活用した業務自動化・効率化ならHuman Beings。要件定義から構築・運用まで、認定クリエイターが伴走支援。単純作業を自動化し、企業の生産性向上を実現します。",
-  keywords: "業務自動化,AI導入,n8n,DX支援,Human Beings,ヒューマンビーイングス,働き方改革",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s | 株式会社Human Beings",
+  },
+  description: DESCRIPTION,
+  keywords: "AIコンサルティング,AI導入支援,AIエージェント,業務自動化,FDE,AI社員くん,n8n,Human Beings,ヒューマンビーイングス",
   authors: [{ name: "株式会社Human Beings" }],
   openGraph: {
-    title: "株式会社Human Beings (ヒューマンビーイングス) | AI導入・業務自動化コンサルティング",
-    description: "AIとn8nを活用した業務自動化・効率化ならHuman Beings。要件定義から構築・運用まで、認定クリエイターが伴走支援。",
+    title: TITLE,
+    description: DESCRIPTION,
     type: "website",
     locale: "ja_JP",
+    siteName: "株式会社Human Beings",
     images: [
       {
         url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Human Beings - AI導入・業務自動化コンサルティング",
+        alt: "Human Beings",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "株式会社Human Beings (ヒューマンビーイングス) | AI導入・業務自動化コンサルティング",
-    description: "AIとn8nを活用した業務自動化・効率化ならHuman Beings。要件定義から構築・運用まで、認定クリエイターが伴走支援。",
+    title: TITLE,
+    description: DESCRIPTION,
     images: ["/og-image.png"],
   },
   robots: {
@@ -52,8 +60,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={inter.className}>
-      <body className="antialiased">
+    <html lang="ja" className={inter.variable}>
+      <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+        >
+          本文へ移動
+        </a>
         {children}
       </body>
     </html>

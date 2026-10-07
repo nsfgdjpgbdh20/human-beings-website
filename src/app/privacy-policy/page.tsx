@@ -1,149 +1,143 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { SiteFooter } from "@/components/site-footer";
+import { COMPANY, CONTACT_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
   alternates: { canonical: "/privacy-policy" },
 };
 
+// 実際の取扱い（問い合わせフォームのみで個人情報を取得し、計測タグ・広告タグは使っていない）に合わせた内容。
+// 取扱いを変える（計測の導入、取得項目の追加、委託先の変更など）ときは、先にこの本文を更新する。
+const ENACTED = "2026年10月7日";
+
+type Section = { title: string; body?: string[]; items?: string[] };
+
+const SECTIONS: Section[] = [
+  {
+    title: "取得する情報",
+    body: ["当社は、本ウェブサイトのお問い合わせフォームを通じて、次の情報を取得します。"],
+    items: ["お名前（会社名・部署名をご記入いただいた場合はそれを含みます）", "メールアドレス", "件名", "ご相談内容としてご記入いただいた事項"],
+  },
+  {
+    title: "利用目的",
+    body: ["取得した個人情報は、次の目的の範囲で利用します。"],
+    items: [
+      "お問い合わせ・ご相談への回答と、そのためのご連絡",
+      "ご相談いただいたサービスの提案、お見積もり、契約の締結と履行に関するご連絡",
+      "上記に付随する事務",
+    ],
+  },
+  {
+    title: "第三者への提供",
+    body: [
+      "当社は、法令に基づく場合を除き、ご本人の同意を得ずに個人情報を第三者に提供しません。",
+      "ただし、利用目的の達成に必要な範囲で、個人情報の取扱いを外部に委託することがあります。この場合、委託先を適切に選び、必要かつ適切な監督を行います。",
+    ],
+  },
+  {
+    title: "取扱いの委託",
+    body: ["当社は、次の業務について個人情報の取扱いを委託しています。"],
+    items: [
+      "お問い合わせ内容を担当者へ届けるメール送信サービス（Resend, Inc.／米国）",
+      "本ウェブサイトの配信（Vercel Inc.／米国）",
+      "企業専用AIエージェント「AI社員くん」に関するご相談への対応のため、当社が業務を委託する協業パートナー",
+    ],
+  },
+  {
+    title: "外国にある事業者の利用",
+    body: [
+      "上記のメール送信サービスおよびウェブサイトの配信サービスは、米国の事業者が提供するものです。米国には、日本の個人情報保護法と同等の包括的な個人情報保護の法律は連邦レベルでは定められていません。当社は、各事業者の利用規約・プライバシーに関する方針を確認したうえで利用しています。",
+    ],
+  },
+  {
+    title: "安全管理のための措置",
+    body: [
+      "当社は、個人情報の漏えい、滅失または毀損を防ぐため、アクセスできる者の限定、認証情報の適切な管理、通信の暗号化など、必要かつ適切な措置を講じます。お問い合わせの内容は、回答と契約に関するご連絡に必要な期間保管し、不要になった情報は削除します。",
+    ],
+  },
+  {
+    title: "アクセス情報とCookie",
+    body: [
+      "本ウェブサイトは、アクセス解析ツールや広告配信のためのCookieを使用していません。ウェブサイトの配信のために、配信事業者のサーバーにアクセスの記録（IPアドレス、閲覧日時、ブラウザの種類など）が一時的に記録されることがあります。",
+      "今後アクセス解析などを導入する場合は、導入前に本ポリシーを改定してお知らせします。",
+    ],
+  },
+  {
+    title: "開示・訂正・利用停止などのご請求",
+    body: [
+      "ご本人から、保有個人データの利用目的の通知、開示、訂正・追加・削除、利用の停止・消去、第三者提供の停止、第三者提供記録の開示のご請求があった場合は、ご本人であることを確認したうえで、法令に従い遅滞なく対応します。ご請求は下記の窓口までご連絡ください。",
+    ],
+  },
+  {
+    title: "本ポリシーの変更",
+    body: ["法令の改正や取扱いの変更に応じて、本ポリシーを変更することがあります。変更後の内容は、本ウェブサイトに掲載した時点から適用します。"],
+  },
+];
+
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <>
       <Navigation />
+      <main id="main" className="py-14 lg:py-20">
+        <article className="wrap max-w-3xl">
+          <header className="space-y-4 border-b border-line pb-8">
+            <p className="kicker">Privacy Policy</p>
+            <h1 className="text-[2rem] font-bold leading-[1.4] text-ink sm:text-[2.5rem]">プライバシーポリシー</h1>
+            <p className="text-[15px] leading-[1.9] text-muted-ink">
+              {COMPANY.name}（以下「当社」）は、本ウェブサイトでお預かりする個人情報を、個人情報の保護に関する法律その他の法令を守り、以下のとおり取り扱います。
+            </p>
+          </header>
 
-      {/* Main Content */}
-      <main id="main" className="container mx-auto max-w-4xl px-6 lg:px-12 py-16 lg:py-24">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
-            プライバシーポリシー
-          </h1>
-
-          <div className="space-y-12 text-gray-700 leading-relaxed">
-            <section>
-              <p className="mb-6">
-                株式会社Human Beings（以下、「当社」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第1条（個人情報）
-              </h2>
-              <p>
-                「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報及び容貌、指紋、声紋にかかるデータ、及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第2条（個人情報の収集方法）
-              </h2>
-              <p>
-                当社は、ユーザーが利用登録をする際に氏名、生年月日、住所、電話番号、メールアドレス、銀行口座番号、クレジットカード番号、運転免許証番号などの個人情報をお尋ねすることがあります。また、ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を、当社の提携先（情報提供元、広告主、広告配信先などを含みます。以下、｢提携先｣といいます。）などから収集することがあります。
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第3条（個人情報を収集・利用する目的）
-              </h2>
-              <p className="mb-4">当社が個人情報を収集・利用する目的は、以下のとおりです。</p>
-              <ol className="list-decimal list-inside space-y-2 pl-4">
-                <li>当社サービスの提供・運営のため</li>
-                <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
-                <li>ユーザーが利用中のサービスの新機能、更新情報、キャンペーン等及び当社が提供する他のサービスの案内のメールを送付するため</li>
-                <li>メンテナンス、重要なお知らせなど必要に応じたご連絡のため</li>
-                <li>利用規約に違反したユーザーや、不正・不当な目的でサービスを利用しようとするユーザーの特定をし、ご利用をお断りするため</li>
-                <li>ユーザーにご自身の登録情報の閲覧や変更、削除、ご利用状況の閲覧を行っていただくため</li>
-                <li>有料サービスにおいて、ユーザーに利用料金を請求するため</li>
-                <li>上記の利用目的に付随する目的</li>
-              </ol>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第4条（利用目的の変更）
-              </h2>
-              <ol className="list-decimal list-inside space-y-2 pl-4">
-                <li>当社は、利用目的が変更前と関連性を有すると合理的に認められる場合に限り、個人情報の利用目的を変更するものとします。</li>
-                <li>利用目的の変更を行った場合には、変更後の目的について、当社所定の方法により、ユーザーに通知し、または本ウェブサイト上に公表するものとします。</li>
-              </ol>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第5条（個人情報の第三者提供）
-              </h2>
-              <p className="mb-4">
-                当社は、次に掲げる場合を除いて、あらかじめユーザーの同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。
-              </p>
-              <ol className="list-decimal list-inside space-y-2 pl-4 mb-4">
-                <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
-                <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって、本人の同意を得ることが困難であるとき</li>
-                <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき</li>
-                <li>予め次の事項を告知あるいは公表し、かつ当社が個人情報保護委員会に届出をしたとき
-                  <ul className="list-disc list-inside pl-6 mt-2 space-y-1">
-                    <li>利用目的に第三者への提供を含むこと</li>
-                    <li>第三者に提供されるデータの項目</li>
-                    <li>第三者への提供の手段または方法</li>
-                    <li>本人の求めに応じて個人情報の第三者への提供を停止すること</li>
-                    <li>本人の求めを受け付ける方法</li>
+          <ol className="divide-y divide-line">
+            {SECTIONS.map((section, i) => (
+              <li key={section.title} className="py-8">
+                <h2 className="text-[18px] font-bold text-ink">
+                  {i + 1}. {section.title}
+                </h2>
+                {section.body?.map((p) => (
+                  <p key={p} className="mt-3 text-[15px] leading-[1.95] text-ink-soft">
+                    {p}
+                  </p>
+                ))}
+                {section.items && (
+                  <ul className="mt-3 space-y-1.5">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex gap-2 text-[15px] leading-[1.85] text-ink-soft">
+                        <span aria-hidden className="mt-[0.8rem] h-px w-3 shrink-0 bg-ink" />
+                        {item}
+                      </li>
+                    ))}
                   </ul>
-                </li>
-              </ol>
-              <p className="mb-2">前項の定めにかかわらず、次に掲げる場合には、当該情報の提供先は第三者に該当しないものとします。</p>
-              <ol className="list-decimal list-inside space-y-2 pl-4">
-                <li>当社が利用目的の達成に必要な範囲内において個人情報の取扱いの全部または一部を委託する場合</li>
-                <li>合併その他の事由による事業の承継に伴って個人情報が提供される場合</li>
-                <li>個人情報を特定の者との間で共同して利用する場合であって、その旨並びに共同して利用される個人情報の項目、共同して利用する者の範囲、利用する者の利用目的および当該個人情報の管理について責任を有する者の氏名または名称について、あらかじめ本人に通知し、または本人が容易に知り得る状態に置いた場合</li>
-              </ol>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第6条（アクセス解析ツールについて）
-              </h2>
-              <p>
-                当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。
+                )}
+              </li>
+            ))}
+            <li className="py-8">
+              <h2 className="text-[18px] font-bold text-ink">{SECTIONS.length + 1}. お問い合わせ窓口</h2>
+              <p className="mt-3 text-[15px] leading-[1.95] text-ink-soft">
+                個人情報の取扱いに関するご質問・ご請求は、
+                <Link href={CONTACT_HREF} className="text-ai underline underline-offset-4">
+                  ご相談窓口
+                </Link>
+                のフォームからご連絡ください。
               </p>
-            </section>
+              <dl className="card mt-5 grid gap-2 p-5 text-[15px] leading-[1.8] sm:grid-cols-[7rem_1fr]">
+                <dt className="font-semibold text-ink">事業者名</dt>
+                <dd className="text-ink-soft">{COMPANY.name}</dd>
+                <dt className="font-semibold text-ink">代表者</dt>
+                <dd className="text-ink-soft">{COMPANY.representative}</dd>
+                <dt className="font-semibold text-ink">所在地</dt>
+                <dd className="text-ink-soft">ご請求に応じて遅滞なくお知らせします</dd>
+              </dl>
+            </li>
+          </ol>
 
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第7条（広告の配信について）
-              </h2>
-              <p>
-                当サイトは、第三者配信の広告サービス（Googleアドセンス等）を利用しています。このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報「Cookie」（氏名、住所、メールアドレス、電話番号は含まれません）を使用することがあります。またGoogleアドセンスに関して、このプロセスの詳細やこのような情報が広告配信事業者に使用されないようにする方法については、<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">こちら</a>をご参照ください。
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第8条（プライバシーポリシーの変更）
-              </h2>
-              <ol className="list-decimal list-inside space-y-2 pl-4">
-                <li>本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、ユーザーに通知することなく、変更することができるものとします。</li>
-                <li>当社が別途定める場合を除いて、変更後のプライバシーポリシーは、本ウェブサイトに掲載したときから効力を生じるものとします。</li>
-              </ol>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 border-b pb-2 border-gray-200">
-                第9条（お問い合わせ窓口）
-              </h2>
-              <p className="mb-4">
-                本ポリシーに関するお問い合わせは、サイト内のお問い合わせフォームよりご連絡ください。
-              </p>
-              <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-                <p className="font-semibold">株式会社Human Beings</p>
-                <p>代表者：中山 舜</p>
-              </div>
-            </section>
-          </div>
-        </div>
+          <p className="border-t border-line pt-6 text-[13px] text-muted-ink">制定：{ENACTED}</p>
+        </article>
       </main>
       <SiteFooter />
-    </div>
+    </>
   );
 }

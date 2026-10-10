@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
+import { SiteFooter } from "@/components/site-footer";
 import { NoteFeed } from "@/components/note-feed";
 import { WorkflowCircuit } from "@/components/workflow-circuit";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -7,13 +8,14 @@ import { CheckCircle, ArrowRight, Zap, Shield, Database, Layout, ExternalLink, S
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "n8nコンサル・導入/構築支援 | Human Beings",
+  title: { absolute: "n8nコンサル・導入/構築支援 | 株式会社Human Beings" },
+  alternates: { canonical: "/n8n" },
   description: "n8nで業務自動化を最短で。要件定義〜設計・構築・運用まで支援。セルフホスト/Docker/各種SaaS連携にも対応。法人向け。",
   openGraph: {
     title: "n8nコンサル・導入/構築支援 | Human Beings",
     description: "n8nで業務自動化を最短で。要件定義〜設計・構築・運用まで支援。セルフホスト/Docker/各種SaaS連携にも対応。法人向け。",
     type: "website",
-    url: "https://humanbeings.co.jp/n8n/", // Assuming domain, should be adjusted if different
+    url: "https://www.humanbeings.co.jp/n8n",
   },
 };
 
@@ -25,7 +27,7 @@ export default function N8nPage() {
     "provider": {
       "@type": "Organization",
       "name": "株式会社Human Beings",
-      "url": "https://humanbeings.co.jp"
+      "url": "https://www.humanbeings.co.jp"
     },
     "description": "n8nを用いた業務自動化の要件定義から設計・構築・運用までを一貫して支援します。",
     "areaServed": "JP",
@@ -41,7 +43,7 @@ export default function N8nPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white pb-20 pt-32 lg:pt-48">
+      <section className="relative overflow-hidden bg-white pb-20 pt-16 lg:pt-24">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(18,18,18,0.06),transparent_60%)]" />
         <div className="relative container mx-auto px-6 lg:px-12">
             <div className="flex flex-col gap-6 max-w-4xl">
@@ -64,7 +66,7 @@ export default function N8nPage() {
                     n8n認定クリエイターが要件定義から実装、内製化支援まで伴走します。
                 </p>
                  <div className="flex flex-wrap gap-4 pt-4">
-                     <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-gray-800 hover:scale-105">
+                     <Link href="/contact?topic=n8n" className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-gray-800 hover:scale-105">
                         無料相談・お問い合わせ
                         <ArrowRight className="ml-2 h-4 w-4" />
                      </Link>
@@ -290,7 +292,7 @@ export default function N8nPage() {
                         <ExternalLink className="h-4 w-4" />
                      </Link>
                      <Link
-                       href="/contact"
+                       href="/contact?topic=n8n"
                        className="inline-flex items-center justify-center rounded-full border-2 border-gray-900 bg-transparent px-8 py-3 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-900 hover:text-white"
                      >
                         実績について詳しく聞く
@@ -324,7 +326,7 @@ export default function N8nPage() {
                              <li className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle className="h-4 w-4 text-gray-900"/> 導入マニュアル作成</li>
                              <li className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle className="h-4 w-4 text-gray-900"/> 納品後1ヶ月間のサポート</li>
                          </ul>
-                         <Link href="/contact" className="block w-full py-3 rounded-xl border border-gray-200 text-center text-sm font-semibold hover:bg-gray-50 transition-colors">
+                         <Link href="/contact?topic=n8n" className="block w-full py-3 rounded-xl border border-gray-200 text-center text-sm font-semibold hover:bg-gray-50 transition-colors">
                              見積もりを依頼する
                          </Link>
                      </div>
@@ -342,7 +344,7 @@ export default function N8nPage() {
                              <li className="flex items-center gap-2 text-sm text-gray-300"><CheckCircle className="h-4 w-4 text-white"/> エラー監視・修正対応</li>
                              <li className="flex items-center gap-2 text-sm text-gray-300"><CheckCircle className="h-4 w-4 text-white"/> スタッフ向けレクチャー</li>
                          </ul>
-                         <Link href="/contact" className="block w-full py-3 rounded-xl bg-white text-gray-900 text-center text-sm font-semibold hover:bg-gray-100 transition-colors">
+                         <Link href="/contact?topic=n8n" className="block w-full py-3 rounded-xl bg-white text-gray-900 text-center text-sm font-semibold hover:bg-gray-100 transition-colors">
                              相談してみる
                          </Link>
                      </div>
@@ -414,7 +416,7 @@ export default function N8nPage() {
                     最適な自動化プランをご提案します。
                 </p>
                 <div className="pt-4">
-                     <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-bold text-gray-900 transition-all hover:bg-gray-100 hover:scale-105 shadow-xl">
+                     <Link href="/contact?topic=n8n" className="inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-bold text-gray-900 transition-all hover:bg-gray-100 hover:scale-105 shadow-xl">
                         無料相談を申し込む
                      </Link>
                      <p className="mt-4 text-sm text-gray-500">※ 無理な営業は一切いたしません</p>
@@ -422,13 +424,7 @@ export default function N8nPage() {
              </div>
         </div>
       </section>
-
-      {/* Footer (Simplified for LP) */}
-      <footer className="bg-white border-t border-gray-200 py-12">
-        <div className="container mx-auto text-center px-6">
-             <p className="text-xs tracking-[0.2em] text-gray-500">© 2026 Human Beings Inc.</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

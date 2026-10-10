@@ -1,14 +1,13 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://humanbeings.co.jp';
-
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/thanks', // Disallow thanks page from crawling
+      disallow: '/thanks', // 送信完了ページは検索対象にしない
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

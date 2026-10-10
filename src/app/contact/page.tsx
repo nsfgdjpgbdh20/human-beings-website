@@ -1,82 +1,96 @@
 import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
+import { SiteFooter } from "@/components/site-footer";
 import { ContactForm } from "@/components/contact-form";
-import { Instagram } from "lucide-react";
-import Link from "next/link";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ | 株式会社Human Beings",
-  description: "n8n導入支援、業務自動化のご相談はこちらから。通常1〜2営業日以内に返信いたします。",
+  title: "ご相談窓口",
+  description:
+    "AI活用の相談・研修、業務自動化、企業専用AIエージェント「AI社員くん」の導入についてのご相談はこちらから。通常1〜2営業日以内にご返信します。",
+  alternates: { canonical: "/contact" },
   openGraph: {
-    title: "お問い合わせ | 株式会社Human Beings",
-    description: "n8n導入支援、業務自動化のご相談はこちらから。",
+    title: "ご相談窓口 | 株式会社Human Beings",
+    description: "AI活用の相談、業務自動化、AI社員くんの導入についてのご相談窓口です。",
+    url: `${SITE_URL}/contact`,
   },
 };
 
-export default function ContactPage() {
+// 遷移元の導線ごとに件名の初期値を入れる。取得項目と送信先は変えない
+const TOPIC_SUBJECTS: Record<string, string> = {
+  "ai-shain": "AI社員くんについての相談",
+  n8n: "n8nによる業務自動化についての相談",
+};
+
+const NEXT_STEPS = [
+  ["内容の確認", "いただいた内容を確認し、通常1〜2営業日以内にメールでご返信します。"],
+  ["オンラインでのご相談", "必要に応じて、30分ほどオンラインでお話を伺います。"],
+  ["範囲とお見積もり", "任せる範囲・受入の条件・費用と期間を文書でご提案します。"],
+] as const;
+
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string | string[] }>;
+}) {
+  const { topic } = await searchParams;
+  const key = Array.isArray(topic) ? topic[0] : topic;
+  const defaultSubject = (key && TOPIC_SUBJECTS[key]) || "";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://humanbeings.co.jp/"
-    },{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Contact",
-      "item": "https://humanbeings.co.jp/contact/"
-    }]
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "トップ", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "ご相談窓口", item: `${SITE_URL}/contact` },
+    ],
   };
 
   return (
-    <div className="min-h-screen bg-[var(--background)] flex flex-col">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navigation />
-
-      <main className="flex-grow pt-32 pb-20">
-        <div className="container mx-auto max-w-5xl px-6 lg:px-12">
-            <div className="text-center mb-12 space-y-4">
-                 <h1 className="text-3xl sm:text-4xl font-medium text-gray-900">お問い合わせ</h1>
-                 <p className="text-gray-600">
-                    業務自動化、n8n導入に関するご相談など、お気軽にお問い合わせください。<br/>
-                    秘密保持契約（NDA）の締結も可能です。
-                 </p>
+      <main id="main" className="py-14 lg:py-20">
+        <div className="wrap grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <p className="kicker">Contact</p>
+              <h1 className="text-[2rem] font-bold leading-[1.4] text-ink sm:text-[2.5rem]">ご相談窓口</h1>
+              <p className="lead">
+                AI活用の相談・研修、業務の自動化、AI社員くんの導入など、AIを業務に取り入れるご相談を受け付けています。何を任せるか決まっていない段階でも大丈夫です。
+              </p>
             </div>
 
-            <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-gray-100">
-                 <ContactForm />
+            <div className="card p-6">
+              <h2 className="text-[16px] font-bold text-ink">ご相談のあとの流れ</h2>
+              <ol className="mt-4 space-y-4">
+                {NEXT_STEPS.map(([t, b], i) => (
+                  <li key={t} className="grid grid-cols-[1.75rem_1fr] gap-3">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink font-mono text-[12px] font-semibold text-white">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <p className="text-[15px] font-semibold text-ink">{t}</p>
+                      <p className="text-[14px] leading-[1.8] text-muted-ink">{b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
-        </div>
-      </main>
 
-      <footer className="relative border-t border-gray-300/60 bg-white/80 py-12">
-        <div className="container mx-auto flex flex-col items-center gap-4 px-6 text-center">
-          <p className="text-sm tracking-[0.35em] text-gray-500">
-            © 2026 株式会社Human Beings
-          </p>
-          <div className="flex items-center gap-6">
-            <div className="flex gap-4 text-xs tracking-wider text-gray-500">
-              <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
-                プライバシーポリシー
-              </Link>
-            </div>
-            <a
-              href="https://www.instagram.com/humanbeings_ai/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-900 transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
+            <ul className="space-y-2 text-[14px] leading-[1.8] text-ink-soft">
+              <li>・このページからのご相談は、株式会社Human Beingsが窓口となります。</li>
+              <li>・秘密保持契約（NDA）の締結にも対応します。</li>
+              <li>・営業目的のご連絡にはご返信できない場合があります。</li>
+            </ul>
+          </div>
+
+          <div className="card p-6 sm:p-8">
+            <ContactForm defaultSubject={defaultSubject} />
           </div>
         </div>
-      </footer>
-    </div>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
